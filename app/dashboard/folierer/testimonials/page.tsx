@@ -55,7 +55,7 @@ export default async function TestimonialsPage() {
                 )}
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="italic text-gray-700">"{testimonial.testimonial_text}"</p>
+                <p className="italic text-gray-700">&quot;{testimonial.testimonial_text}&quot;</p>
                 <div className="flex gap-2 justify-end">
                   {/* TODO: Add Edit and Delete functionality */}
                   <Button variant="outline" size="sm" disabled>Bearbeiten</Button>
