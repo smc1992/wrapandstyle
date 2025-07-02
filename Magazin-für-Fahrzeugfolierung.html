@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazin - Folierportal - Inspiration & Netzwerk</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00FFFF',secondary:'#C0C0C0'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Helvetica Neue', sans-serif;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%), url('https://readdy.ai/api/search-image?query=Professional%2520magazine%2520layout%2520with%2520car%2520wrapping%2520articles%252C%2520modern%2520design%252C%2520clean%2520typography%252C%2520high-quality%2520printing%252C%2520automotive%2520industry%2520publication%2520on%2520a%2520desk%2520with%2520minimal%2520styling.%2520The%2520magazine%2520shows%2520various%2520car%2520wrapping%2520techniques%2520and%2520designs%2520with%2520professional%2520photography.%2520Clean%2520background%2520with%2520soft%2520lighting.&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center right;
+}
+.glass-effect {
+backdrop-filter: blur(8px);
+background-color: rgba(255, 255, 255, 0.1);
+}
+input[type="checkbox"] {
+appearance: none;
+width: 1.25rem;
+height: 1.25rem;
+border: 2px solid #C0C0C0;
+border-radius: 4px;
+position: relative;
+}
+input[type="checkbox"]:checked {
+background-color: #00FFFF;
+border-color: #00FFFF;
+}
+input[type="checkbox"]:checked::before {
+content: "✓";
+position: absolute;
+color: black;
+font-size: 0.875rem;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.category-filter:checked + label {
+background-color: #00FFFF;
+color: black;
+}
+.article-card:hover .article-image {
+transform: scale(1.05);
+}
+.article-image {
+transition: transform 0.5s ease;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- Header/Navigation -->
+<header class="fixed w-full z-50 transition-all duration-300">
+<nav class="bg-black/90 backdrop-blur-sm py-4 px-6 md:px-12">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<a href="index.html" class="text-white text-2xl font-['Pacifico']">Folierportal</a>
+<div class="hidden md:flex space-x-8 text-white">
+<a href="/" class="hover:text-primary transition-colors">Startseite</a>
+<a href="/about" class="hover:text-primary transition-colors">Über uns</a>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/8b806391-0cd5-43c8-9e94-7cebb0bfa605" data-readdy="true" class="text-primary transition-colors">Magazin</a>
+<a href="#" class="hover:text-primary transition-colors">Folierer finden</a>
+<a href="/contact" class="hover:text-primary transition-colors">Kontakt</a>
+</div>
+<div class="md:hidden w-8 h-8 flex items-center justify-center">
+<i class="ri-menu-line text-white text-2xl"></i>
+</div>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="hero-section pt-28 pb-20 relative">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="max-w-3xl">
+<span class="inline-block bg-primary/20 backdrop-blur-sm text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">Magazin & Fachartikel</span>
+<h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Entdecken Sie unser Fachmagazin</h1>
+<p class="text-xl md:text-2xl text-white/90 mb-8 font-light">Aktuelle Trends, Techniken und Expertenwissen rund um die Fahrzeugfolierung</p>
+</div>
+</div>
+</section>
+<!-- Filter Section -->
+<section class="bg-white sticky top-16 z-40 shadow-sm">
+<div class="max-w-7xl mx-auto px-6 md:px-12 py-4">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<div class="relative w-full md:w-64">
+<input type="text" placeholder="Suchen..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+<div class="relative w-full md:w-auto">
+<button class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full focus:outline-none hover:border-primary">
+<span>Kategorien</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg p-2 hidden">
+<div class="space-y-1">
+<div class="flex items-center">
+<input type="checkbox" id="cat-all" class="category-filter hidden">
+<label for="cat-all" class="w-full px-3 py-2 rounded-full cursor-pointer hover:bg-gray-100">Alle</label>
+</div>
+<div class="flex items-center">
+<input type="checkbox" id="cat-trends" class="category-filter hidden">
+<label for="cat-trends" class="w-full px-3 py-2 rounded-full cursor-pointer hover:bg-gray-100">Trends</label>
+</div>
+<div class="flex items-center">
+<input type="checkbox" id="cat-techniques" class="category-filter hidden">
+<label for="cat-techniques" class="w-full px-3 py-2 rounded-full cursor-pointer hover:bg-gray-100">Techniken</label>
+</div>
+<div class="flex items-center">
+<input type="checkbox" id="cat-materials" class="category-filter hidden">
+<label for="cat-materials" class="w-full px-3 py-2 rounded-full cursor-pointer hover:bg-gray-100">Materialkunde</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto py-2 md:py-0">
+<button class="px-4 py-2 bg-primary text-black rounded-full text-sm font-medium whitespace-nowrap">Alle</button>
+<button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium whitespace-nowrap">Trends</button>
+<button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium whitespace-nowrap">Techniken</button>
+<button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium whitespace-nowrap">Materialkunde</button>
+<button class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium whitespace-nowrap">Interviews</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Articles -->
+<section class="py-12">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<h2 class="text-2xl font-bold mb-8">Neueste Artikel</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Featured Article -->
+<div class="lg:col-span-2 bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-80 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Professional%2520car%2520wrapping%2520process%252C%2520close-up%2520of%2520hands%2520applying%2520metallic%2520blue%2520vinyl%2520film%2520to%2520a%2520luxury%2520sports%2520car.%2520Modern%2520workshop%2520environment%2520with%2520professional%2520lighting.%2520The%2520image%2520shows%2520the%2520precision%2520and%2520craftsmanship%2520of%2520vehicle%2520wrapping.%2520Clean%2520background%2520with%2520professional%2520tools%2520visible.&width=800&height=500&seq=10&orientation=landscape" alt="Neue Technologien in der Fahrzeugfolierung" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Techniken</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center text-sm text-gray-500 mb-3">
+<span>09. Juni 2025</span>
+<span class="mx-2">•</span>
+<span>10 Min Lesezeit</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Neue Technologien in der Fahrzeugfolierung: Revolution im Jahr 2025</h3>
+<p class="text-gray-600 mb-4">Die neuesten Entwicklungen in der Foliertechnologie versprechen schnellere Anwendungen, bessere Haltbarkeit und atemberaubende visuelle Effekte. Erfahren Sie, wie diese Innovationen die Branche verändern.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520a%2520middle-aged%2520man%2520with%2520short%2520hair%2520and%2520glasses%252C%2520business%2520casual%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting%252C%2520high-quality%2520corporate%2520portrait&width=100&height=100&seq=11&orientation=squarish" alt="Michael Berger" class="w-10 h-10 rounded-full object-cover">
+<span class="font-medium">Michael Berger</span>
+</div>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Secondary Featured Articles -->
+<div class="space-y-8">
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520various%2520car%2520vinyl%2520wrap%2520material%2520samples%2520in%2520different%2520colors%2520and%2520finishes%252C%2520arranged%2520on%2520a%2520professional%2520workbench.%2520The%2520samples%2520show%2520metallic%252C%2520matte%252C%2520and%2520glossy%2520finishes.%2520Clean%2520studio%2520setting%2520with%2520professional%2520lighting.&width=600&height=400&seq=12&orientation=landscape" alt="Materialkunde" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Materialkunde</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>07. Juni 2025</span>
+<span class="mx-2">•</span>
+<span>7 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Vergleich: Premium vs. Standard Folien</h3>
+<p class="text-gray-600 mb-3 line-clamp-2">Welche Unterschiede gibt es zwischen Premium- und Standardfolien? Lohnt sich der Aufpreis? Eine detaillierte Analyse.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520hands%2520applying%2520vinyl%2520wrap%2520to%2520a%2520car%2520door%2520handle%252C%2520showing%2520detailed%2520technique.%2520Professional%2520installer%2520using%2520precision%2520tools%2520to%2520work%2520around%2520complex%2520curves.%2520Clean%2520workshop%2520setting%2520with%2520professional%2520lighting.%2520Focus%2520on%2520the%2520technique%2520and%2520precision%2520of%2520application.&width=600&height=400&seq=13&orientation=landscape" alt="Folierungstechniken" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Techniken</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>05. Juni 2025</span>
+<span class="mx-2">•</span>
+<span>8 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Meistern Sie komplexe Fahrzeugkonturen</h3>
+<p class="text-gray-600 mb-3 line-clamp-2">Professionelle Tipps und Tricks für die perfekte Folierung von Türgriffen, Spiegeln und anderen anspruchsvollen Fahrzeugteilen.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content -->
+<section class="py-12">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Articles Grid -->
+<div class="lg:w-2/3">
+<h2 class="text-2xl font-bold mb-8">Alle Artikel</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Article 1 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-52 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Professional%2520car%2520wrapping%2520process%252C%2520showing%2520a%2520vehicle%2520with%2520half-applied%2520matte%2520black%2520vinyl%2520film.%2520The%2520contrast%2520between%2520original%2520paint%2520and%2520new%2520wrap%2520is%2520visible.%2520Modern%2520workshop%2520environment%2520with%2520professional%2520lighting.%2520Clean%2520background%2520with%2520professional%2520tools%2520visible.&width=600&height=400&seq=14&orientation=landscape" alt="Folierung Trends 2025" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Trends</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>02. Juni 2025</span>
+<span class="mx-2">•</span>
+<span>5 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Die Top 5 Folierungstrends für 2025</h3>
+<p class="text-gray-600 mb-3 line-clamp-3">Von Farbwechselfolien bis hin zu nachhaltigen Materialien – entdecken Sie die neuesten Trends in der Fahrzeugfolierung und bleiben Sie der Konkurrenz einen Schritt voraus.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<!-- Article 2 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-52 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520hands%2520applying%2520vinyl%2520wrap%2520to%2520a%2520car%2520door%252C%2520showing%2520detailed%2520technique.%2520Professional%2520installer%2520using%2520squeegee%2520tool%2520to%2520smooth%2520out%2520air%2520bubbles.%2520Clean%2520workshop%2520setting%2520with%2520professional%2520lighting.%2520Focus%2520on%2520the%2520technique%2520and%2520precision%2520of%2520application.&width=600&height=400&seq=15&orientation=landscape" alt="Folierungstechniken" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Techniken</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>28. Mai 2025</span>
+<span class="mx-2">•</span>
+<span>8 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Fortgeschrittene Techniken für Kurven und Kanten</h3>
+<p class="text-gray-600 mb-3 line-clamp-3">Lernen Sie von Experten, wie Sie komplexe Fahrzeugteile perfekt folieren und ein makelloses Finish erzielen. Mit diesen Profi-Tipps meistern Sie auch schwierige Bereiche.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<!-- Article 3 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-52 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Various%2520car%2520vinyl%2520wrap%2520material%2520samples%2520displayed%2520professionally%2520on%2520a%2520table.%2520Different%2520textures%252C%2520finishes%2520and%2520colors%2520of%2520automotive%2520wrapping%2520films.%2520Clean%2520studio%2520setting%2520with%2520professional%2520lighting.%2520Focus%2520on%2520the%2520material%2520quality%2520and%2520variety.&width=600&height=400&seq=16&orientation=landscape" alt="Folienmaterialien" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Materialkunde</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>15. Mai 2025</span>
+<span class="mx-2">•</span>
+<span>6 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Materialkunde: Die richtige Folie für jedes Projekt</h3>
+<p class="text-gray-600 mb-3 line-clamp-3">Ein umfassender Vergleich verschiedener Folientypen und ihre optimalen Einsatzgebiete für perfekte Ergebnisse. Lernen Sie die Vor- und Nachteile jedes Materials kennen.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<!-- Article 4 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-52 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Professional%2520interview%2520setting%2520with%2520two%2520people%2520discussing%2520car%2520wrapping%2520business.%2520Modern%2520office%2520environment%2520with%2520car%2520wrapping%2520samples%2520visible%2520in%2520background.%2520Professional%2520lighting%2520and%2520clean%2520setting.%2520Focus%2520on%2520the%2520conversation%2520and%2520professional%2520atmosphere.&width=600&height=400&seq=17&orientation=landscape" alt="Interview mit Experten" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Interviews</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>10. Mai 2025</span>
+<span class="mx-2">•</span>
+<span>12 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Im Gespräch mit Foliermeister Thomas Weber</h3>
+<p class="text-gray-600 mb-3 line-clamp-3">Der renommierte Folierexperte teilt seine 20-jährige Erfahrung, spricht über die Entwicklung der Branche und gibt Einblicke in seine spektakulärsten Projekte.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<!-- Article 5 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-52 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Professional%2520car%2520wrapping%2520workshop%2520interior%2520with%2520multiple%2520vehicles%2520in%2520different%2520stages%2520of%2520wrapping.%2520Modern%2520facility%2520with%2520professional%2520equipment%2520and%2520lighting.%2520Clean%2520and%2520organized%2520workspace%2520showing%2520the%2520business%2520side%2520of%2520car%2520wrapping.&width=600&height=400&seq=18&orientation=landscape" alt="Geschäftsmodelle" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Business</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>05. Mai 2025</span>
+<span class="mx-2">•</span>
+<span>9 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Erfolgreiche Geschäftsmodelle in der Folierbranche</h3>
+<p class="text-gray-600 mb-3 line-clamp-3">Wie Sie Ihr Foliergeschäft profitabel aufbauen und skalieren können. Praxisnahe Tipps zu Marketing, Kundenakquise und Spezialisierungsmöglichkeiten.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+<!-- Article 6 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-md article-card group">
+<div class="relative h-52 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520car%2520paint%2520protection%2520film%2520being%2520applied%2520to%2520a%2520luxury%2520vehicle.%2520The%2520transparent%2520film%2520is%2520being%2520carefully%2520installed%2520to%2520protect%2520the%2520original%2520paint.%2520Professional%2520workshop%2520setting%2520with%2520clean%2520background%2520and%2520proper%2520lighting.&width=600&height=400&seq=19&orientation=landscape" alt="Lackschutzfolierung" class="w-full h-full object-cover article-image">
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-black px-3 py-1 rounded-full text-sm font-medium">Techniken</span>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center text-sm text-gray-500 mb-2">
+<span>01. Mai 2025</span>
+<span class="mx-2">•</span>
+<span>7 Min Lesezeit</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Lackschutzfolierung: Unsichtbarer Schutz, sichtbarer Mehrwert</h3>
+<p class="text-gray-600 mb-3 line-clamp-3">Alles über die perfekte Applikation von Lackschutzfolien, die richtige Materialauswahl und wie Sie Ihren Kunden den Mehrwert überzeugend vermitteln.</p>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/43c517f5-e7ae-4aee-bcd2-4c95bbbf3ce0" data-readdy="true" class="text-primary font-medium flex items-center gap-1">
+Weiterlesen
+<i class="ri-arrow-right-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center">
+<div class="flex items-center gap-2">
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-primary">
+<i class="ri-arrow-left-s-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-black font-medium">1</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-primary">2</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-primary">3</a>
+<span class="w-10 h-10 flex items-center justify-center">...</span>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-primary">8</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:border-primary">
+<i class="ri-arrow-right-s-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="lg:w-1/3 space-y-8">
+<!-- Popular Topics -->
+<div class="bg-white rounded-xl shadow-md p-6">
+<h3 class="text-xl font-bold mb-4">Beliebte Themen</h3>
+<div class="space-y-4">
+<a href="#" class="flex items-center gap-3 group">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520metallic%2520chrome%2520car%2520wrap%2520finish%2520on%2520a%2520vehicle%2520panel.%2520The%2520reflective%2520surface%2520shows%2520the%2520high-quality%2520finish.%2520Clean%2520studio%2520setting%2520with%2520professional%2520lighting.&width=200&height=200&seq=20&orientation=squarish" alt="Chromfolierung" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-medium group-hover:text-primary transition-colors">Chromfolierung</h4>
+<p class="text-sm text-gray-500">12 Artikel</p>
+</div>
+</a>
+<a href="#" class="flex items-center gap-3 group">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520matte%2520black%2520car%2520wrap%2520finish%2520on%2520a%2520vehicle%2520panel.%2520The%2520non-reflective%2520surface%2520shows%2520the%2520high-quality%2520finish.%2520Clean%2520studio%2520setting%2520with%2520professional%2520lighting.&width=200&height=200&seq=21&orientation=squarish" alt="Mattfolierung" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-medium group-hover:text-primary transition-colors">Mattfolierung</h4>
+<p class="text-sm text-gray-500">9 Artikel</p>
+</div>
+</a>
+<a href="#" class="flex items-center gap-3 group">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520transparent%2520paint%2520protection%2520film%2520being%2520applied%2520to%2520a%2520car%2520surface.%2520The%2520clear%2520film%2520shows%2520its%2520protective%2520qualities.%2520Clean%2520studio%2520setting%2520with%2520professional%2520lighting.&width=200&height=200&seq=22&orientation=squarish" alt="Lackschutzfolierung" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-medium group-hover:text-primary transition-colors">Lackschutzfolierung</h4>
+<p class="text-sm text-gray-500">15 Artikel</p>
+</div>
+</a>
+<a href="#" class="flex items-center gap-3 group">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=Close-up%2520of%2520commercial%2520vehicle%2520with%2520business%2520branding%2520and%2520graphics%2520applied%2520as%2520vinyl%2520wrap.%2520The%2520professional%2520design%2520shows%2520company%2520logo%2520and%2520information.%2520Clean%2520outdoor%2520setting%2520with%2520natural%2520lighting.&width=200&height=200&seq=23&orientation=squarish" alt="Fahrzeugbeschriftung" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="font-medium group-hover:text-primary transition-colors">Fahrzeugbeschriftung</h4>
+<p class="text-sm text-gray-500">8 Artikel</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Archive -->
+<div class="bg-white rounded-xl shadow-md p-6">
+<h3 class="text-xl font-bold mb-4">Archiv</h3>
+<div class="space-y-3">
+<div class="border-b pb-3">
+<h4 class="font-medium mb-2">2025</h4>
+<div class="flex flex-wrap gap-2">
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Juni</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Mai</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">April</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">März</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Februar</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Januar</a>
+</div>
+</div>
+<div class="border-b pb-3">
+<h4 class="font-medium mb-2">2024</h4>
+<div class="flex flex-wrap gap-2">
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Dezember</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">November</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Oktober</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">September</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">August</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Juli</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Juni</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Mai</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">April</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">März</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Februar</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Januar</a>
+</div>
+</div>
+<div>
+<h4 class="font-medium mb-2">2023</h4>
+<div class="flex flex-wrap gap-2">
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Dezember</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">November</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Oktober</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">September</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">August</a>
+<a href="#" class="text-sm text-gray-600 hover:text-primary">Juli</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Newsletter -->
+<div class="bg-white rounded-xl shadow-md p-6">
+<h3 class="text-xl font-bold mb-4">Newsletter abonnieren</h3>
+<p class="text-gray-600 mb-4">Erhalten Sie die neuesten Artikel und Branchennews direkt in Ihr Postfach.</p>
+<form class="space-y-3">
+<input type="email" placeholder="Ihre E-Mail-Adresse" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+<button type="submit" class="w-full bg-primary text-black px-4 py-3 rounded-button font-semibold hover:bg-opacity-80 transition-all whitespace-nowrap">Abonnieren</button>
+</form>
+<p class="text-xs text-gray-500 mt-3">Wir respektieren Ihre Privatsphäre. Abmeldung jederzeit möglich.</p>
+</div>
+<!-- Digital Magazine -->
+<div class="bg-white rounded-xl shadow-md overflow-hidden">
+<div class="h-48 relative">
+<img src="https://readdy.ai/api/search-image?query=Professional%2520magazine%2520cover%2520featuring%2520car%2520wrapping%252C%2520showing%2520a%2520luxury%2520sports%2520car%2520with%2520vibrant%2520custom%2520wrap.%2520Clean%2520magazine%2520layout%2520with%2520professional%2520typography%2520and%2520design.%2520High-quality%2520print%2520publication%2520appearance.&width=600&height=400&seq=24&orientation=landscape" alt="Digitales Magazin" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4">
+<h3 class="text-white font-bold text-xl mb-1">Aktuelle Ausgabe</h3>
+<p class="text-white/80 text-sm">Juni 2025</p>
+</div>
+</div>
+<div class="p-5">
+<p class="text-gray-600 mb-4">Lesen Sie unsere aktuelle Print-Ausgabe auch digital mit exklusiven Zusatzinhalten.</p>
+<a href="#" class="bg-primary text-black px-4 py-2 rounded-button font-medium hover:bg-opacity-80 transition-all inline-block whitespace-nowrap">Jetzt lesen</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Publications -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<h2 class="text-2xl font-bold mb-8">Sonderausgaben & Publikationen</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-book-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-3">Jahrbuch 2025</h3>
+<p class="text-gray-600 mb-6">Unser umfassendes Jahrbuch mit allen wichtigen Entwicklungen und Trends der Folierbranche.</p>
+<a href="#" class="text-primary font-semibold inline-flex items-center">
+Mehr erfahren
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+<div class="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-file-list-3-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-3">Materialkatalog</h3>
+<p class="text-gray-600 mb-6">Der umfassende Katalog aller Folienmaterialien mit detaillierten technischen Spezifikationen.</p>
+<a href="#" class="text-primary font-semibold inline-flex items-center">
+Mehr erfahren
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+<div class="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-award-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold mb-3">Best of Folierung</h3>
+<p class="text-gray-600 mb-6">Eine Sammlung der beeindruckendsten Folierungsprojekte des Jahres mit Hintergrundgeschichten.</p>
+<a href="#" class="text-primary font-semibold inline-flex items-center">
+Mehr erfahren
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<h3 class="text-xl font-bold mb-4 font-['Pacifico']">Folierportal</h3>
+<p class="text-gray-400 mb-6">Das größte Netzwerk für Folierexperten in Deutschland.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary hover:text-black transition-colors">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Schnellzugriff</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Startseite</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Über uns</a></li>
+<li><a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/8b806391-0cd5-43c8-9e94-7cebb0bfa605" data-readdy="true" class="text-gray-400 hover:text-primary transition-colors">Magazin</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Folierer finden</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Kontakt</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Rechtliches</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Impressum</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Datenschutz</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">AGB</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Cookie-Einstellungen</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Magazin lesen</h3>
+<div class="bg-gray-800 p-4 rounded-lg">
+<p class="text-gray-400 mb-4">Lesen Sie die aktuelle Ausgabe unseres Print-Magazins digital auf Pressmatrix.</p>
+<a href="#" class="inline-flex items-center text-primary font-medium">
+Zum digitalen Magazin
+<i class="ri-external-link-line ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Folierportal. Alle Rechte vorbehalten.</p>
+<div class="flex items-center space-x-4">
+<span class="text-gray-500 text-sm">Zahlungsmethoden:</span>
+<div class="flex space-x-2">
+<i class="ri-visa-fill text-gray-400 text-xl"></i>
+<i class="ri-mastercard-fill text-gray-400 text-xl"></i>
+<i class="ri-paypal-fill text-gray-400 text-xl"></i>
+<i class="ri-bank-card-fill text-gray-400 text-xl"></i>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- Back to top button -->
+<button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all">
+<i class="ri-arrow-up-line text-xl"></i>
+</button>
+<script id="navigation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const header = document.querySelector('header nav');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 50) {
+header.classList.remove('bg-black/90');
+header.classList.add('bg-black');
+} else {
+header.classList.remove('bg-black');
+header.classList.add('bg-black/90');
+}
+});
+});
+</script>
+<script id="category-filter-script">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryButton = document.querySelector('button:has(.ri-arrow-down-s-line)');
+const categoryDropdown = document.querySelector('.absolute.top-full');
+categoryButton.addEventListener('click', function() {
+categoryDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(event) {
+if (!categoryButton.contains(event.target) && !categoryDropdown.contains(event.target)) {
+categoryDropdown.classList.add('hidden');
+}
+});
+const categoryFilters = document.querySelectorAll('.category-filter');
+categoryFilters.forEach(filter => {
+filter.addEventListener('change', function() {
+const label = this.nextElementSibling;
+categoryFilters.forEach(f => {
+if (f !== this) {
+f.checked = false;
+f.nextElementSibling.classList.remove('bg-primary', 'text-black');
+f.nextElementSibling.classList.add('hover:bg-gray-100');
+}
+});
+if (this.checked) {
+label.classList.add('bg-primary', 'text-black');
+label.classList.remove('hover:bg-gray-100');
+categoryButton.querySelector('span').textContent = label.textContent;
+} else {
+label.classList.remove('bg-primary', 'text-black');
+label.classList.add('hover:bg-gray-100');
+categoryButton.querySelector('span').textContent = 'Kategorien';
+}
+categoryDropdown.classList.add('hidden');
+});
+});
+});
+</script>
+<script id="back-to-top-script">
+document.addEventListener('DOMContentLoaded', function() {
+const backToTopButton = document.getElementById('back-to-top');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 500) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.add('opacity-0', 'invisible');
+backToTopButton.classList.remove('opacity-100', 'visible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+</script>
+<script id="filter-buttons-script">
+document.addEventListener('DOMContentLoaded', function() {
+const filterButtons = document.querySelectorAll('.overflow-x-auto button');
+filterButtons.forEach(button => {
+button.addEventListener('click', function() {
+filterButtons.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-black');
+btn.classList.add('bg-gray-100', 'hover:bg-gray-200');
+});
+this.classList.remove('bg-gray-100', 'hover:bg-gray-200');
+this.classList.add('bg-primary', 'text-black');
+});
+});
+});
+</script>
+</body>
+</html>

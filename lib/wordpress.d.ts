@@ -76,6 +76,12 @@ export interface Post extends WPEntity {
   categories: number[];
   tags: number[];
   meta: Record<string, unknown>;
+  rank_math_seo?: RankMathSeoData; // Hinzugefügt
+  _embedded?: {
+    author?: Author[];
+    'wp:featuredmedia'?: FeaturedMedia[];
+    'wp:term'?: (Category[] | Tag[])[];
+  };
 }
 
 export interface Page extends WPEntity {
@@ -90,6 +96,7 @@ export interface Page extends WPEntity {
   ping_status: "open" | "closed";
   template: string;
   meta: Record<string, unknown>;
+  rank_math_seo?: RankMathSeoData; // Hinzugefügt
 }
 
 // Taxonomy types
@@ -122,6 +129,25 @@ export interface Author {
   avatar_urls: Record<string, string>;
   meta: Record<string, unknown>;
 }
+
+// --- HIER BEGINNEN DIE NEUEN TYPEN FÜR RANK MATH SEO ---
+export interface RankMathSeoData {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  og_title?: string;
+  og_description?: string;
+  og_image?: string;
+  og_url?: string;
+  og_type?: string;
+  twitter_card_type?: string;
+  twitter_title?: string;
+  twitter_description?: string;
+  twitter_image?: string;
+  // Füge hier weitere Felder hinzu, falls dein Plugin mehr bereitstellt
+}
+// --- HIER ENDEN DIE NEUEN TYPEN FÜR RANK MATH SEO ---
+
 
 // Block types
 interface BlockSupports {

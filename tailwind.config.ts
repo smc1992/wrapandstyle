@@ -21,6 +21,26 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        logo: ["var(--font-pacifico)", "cursive"],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        'scroll': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        'scroll': 'scroll 60s linear infinite',
       },
       colors: {
         border: "hsl(var(--border))",
@@ -58,24 +78,18 @@ const config = {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '8px', // HTML 'DEFAULT' and 'button' are 8px
+        lg: '12px', // HTML 'md' is 12px
+        xl: '16px', // HTML 'lg' is 16px
+        '2xl': '20px', // HTML 'xl' is 20px
+        '3xl': '24px', // HTML '2xl' is 24px
+        '4xl': '32px', // Custom for HTML '3xl'
+        full: '9999px',
+        button: '8px',
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
+
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über uns - wrap & style - Das führende Portal für Fahrzeugfolierung</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00D1C7',secondary:'#1E293B'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.hero-section {
+background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.2) 100%), url('https://readdy.ai/api/search-image?query=A%2520professional%2520team%2520of%2520car%2520wrapping%2520specialists%2520working%2520in%2520a%2520modern%2520workshop%2520with%2520high-end%2520vehicles.%2520The%2520image%2520shows%2520a%2520diverse%2520team%2520collaborating%2520on%2520vehicle%2520wrapping%2520projects%252C%2520with%2520a%2520focus%2520on%2520craftsmanship%2520and%2520teamwork.%2520The%2520workshop%2520is%2520well-lit%2520with%2520premium%2520cars%2520in%2520various%2520stages%2520of%2520wrapping.%2520The%2520left%2520side%2520of%2520the%2520image%2520has%2520more%2520empty%2520space%2520for%2520text%2520overlay%252C%2520while%2520the%2520right%2520side%2520shows%2520the%2520detailed%2520work%2520environment.&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.timeline-item::before {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 2px;
+background-color: #e5e7eb;
+transform: translateX(-50%);
+}
+.timeline-dot {
+position: absolute;
+left: 0;
+top: 0;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+background-color: #00D1C7;
+transform: translateX(-50%);
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header & Navigation -->
+<header class="fixed w-full bg-transparent z-50 transition-all duration-300">
+<div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<div class="text-white text-2xl font-['Pacifico']">logo</div>
+<nav class="hidden md:flex space-x-8">
+<a href="#" class="text-white hover:text-secondary font-medium">Startseite</a>
+<a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/2e65122c-b6f9-4d6a-ab20-caadb2d1ff76" data-readdy="true" class="text-white hover:text-secondary font-medium">Über uns</a>
+<a href="#" class="text-white hover:text-secondary font-medium">Magazin</a>
+<a href="#" class="text-white hover:text-secondary font-medium">Folierer finden</a>
+<a href="#" class="text-white hover:text-secondary font-medium">Kontakt</a>
+</nav>
+<div class="md:hidden w-8 h-8 flex items-center justify-center text-white">
+<i class="ri-menu-line ri-2x"></i>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero-section min-h-[60vh] flex items-center relative overflow-hidden">
+<div class="container mx-auto px-4 w-full relative">
+<div class="max-w-2xl text-white">
+<div class="inline-flex items-center bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+<img src="https://readdy.ai/api/search-image?query=A%2520minimalist%252C%2520modern%2520magazine%2520cover%2520design%2520for%2520WRAPS%2520magazine%252C%2520featuring%2520clean%2520typography%2520and%2520automotive%2520elements.%2520Professional%2520publication%2520design.&width=40&height=40&seq=20&orientation=squarish" alt="WRAPS Magazine" class="w-8 h-8 rounded-full mr-2">
+<span class="text-sm">Von den Machern des WRAPS Magazins</span>
+</div>
+<h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Unsere Geschichte & <span class="text-primary">Mission</span></h1>
+<p class="text-xl mb-8 leading-relaxed">Erfahren Sie mehr über unser Team, unsere Werte und die Entwicklung des führenden Portals für Fahrzeugfolierung in Deutschland.</p>
+<a href="#team" class="group bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center w-fit cursor-pointer">
+Unser Team kennenlernen
+<i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- Company History Section -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Unsere Unternehmensgeschichte</h2>
+<p class="text-gray-700 max-w-3xl mx-auto">Von den bescheidenen Anfängen als Printmagazin bis hin zum führenden digitalen Portal für Fahrzeugfolierung in Deutschland – entdecken Sie unsere Reise.</p>
+</div>
+<div class="max-w-4xl mx-auto">
+<div class="relative pl-10 space-y-12">
+<!-- Timeline Line -->
+<div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+<!-- Timeline Item 1 -->
+<div class="relative timeline-item">
+<div class="timeline-dot"></div>
+<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between mb-2">
+<h3 class="text-xl font-bold text-primary">Gründung des WRAPS Magazins</h3>
+<span class="text-gray-500">2012</span>
+</div>
+<p class="text-gray-700 mb-4">Die WNP Medien GmbH gründet das erste deutschsprachige Fachmagazin für Fahrzeugfolierung. Mit einer Startauflage von 5.000 Exemplaren erreicht das Magazin schnell eine treue Leserschaft in der noch jungen Branche.</p>
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520magazine%2520about%2520car%2520wrapping%2520first%2520issue%2520from%25202012.%2520The%2520magazine%2520cover%2520shows%2520a%2520luxury%2520sports%2520car%2520with%2520a%2520custom%2520wrap%2520design.%2520The%2520magazine%2520has%2520a%2520clean%2520layout%2520with%2520the%2520title%2520WRAPS%2520clearly%2520visible.%2520High-quality%2520print%2520magazine%2520photography%2520with%2520professional%2520lighting.&width=600&height=400&seq=30&orientation=landscape" alt="Erstes WRAPS Magazin" class="w-full h-48 object-cover rounded-lg">
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative timeline-item">
+<div class="timeline-dot"></div>
+<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between mb-2">
+<h3 class="text-xl font-bold text-primary">Ausbau der Reichweite</h3>
+<span class="text-gray-500">2015</span>
+</div>
+<p class="text-gray-700 mb-4">Nach drei erfolgreichen Jahren verdoppelt sich die Auflage auf 10.000 Exemplare. Das Magazin wird zum wichtigsten Medium der Branche und erreicht Folierer, Hersteller und Enthusiasten in ganz Deutschland, Österreich und der Schweiz.</p>
+<div class="grid grid-cols-2 gap-4">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520team%2520meeting%2520in%2520a%2520modern%2520office%2520discussing%2520magazine%2520layouts%2520and%2520content%2520strategy.%2520The%2520team%2520is%2520looking%2520at%2520print%2520magazines%2520spread%2520on%2520a%2520conference%2520table.%2520Professional%2520business%2520photography%2520with%2520natural%2520lighting.&width=300&height=200&seq=31&orientation=landscape" alt="Team Meeting 2015" class="w-full h-32 object-cover rounded-lg">
+<img src="https://readdy.ai/api/search-image?query=A%2520stack%2520of%2520professional%2520car%2520wrapping%2520magazines%2520being%2520prepared%2520for%2520distribution.%2520The%2520magazines%2520are%2520neatly%2520stacked%2520showing%2520the%2520WRAPS%2520magazine%2520cover.%2520High-quality%2520print%2520publication%2520photography.&width=300&height=200&seq=32&orientation=landscape" alt="Magazin Distribution" class="w-full h-32 object-cover rounded-lg">
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative timeline-item">
+<div class="timeline-dot"></div>
+<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between mb-2">
+<h3 class="text-xl font-bold text-primary">Digitale Transformation</h3>
+<span class="text-gray-500">2018</span>
+</div>
+<p class="text-gray-700 mb-4">Mit dem Launch der ersten Version unseres Online-Portals beginnt die digitale Transformation. Neben dem Printmagazin bieten wir nun auch digitale Inhalte und einen ersten Folierer-Finder für Endkunden an.</p>
+<img src="https://readdy.ai/api/search-image?query=A%2520modern%2520website%2520design%2520for%2520a%2520car%2520wrapping%2520portal%2520shown%2520on%2520multiple%2520devices%2520including%2520desktop%2520and%2520mobile.%2520The%2520website%2520has%2520a%2520clean%252C%2520professional%2520layout%2520featuring%2520car%2520wrapping%2520content.%2520High-quality%2520web%2520design%2520mockup%2520photography.&width=600&height=400&seq=33&orientation=landscape" alt="Erstes Online-Portal" class="w-full h-48 object-cover rounded-lg">
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="relative timeline-item">
+<div class="timeline-dot"></div>
+<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between mb-2">
+<h3 class="text-xl font-bold text-primary">Relaunch & Expansion</h3>
+<span class="text-gray-500">2021</span>
+</div>
+<p class="text-gray-700 mb-4">Nach einer umfassenden Marktanalyse launchen wir unser komplett überarbeitetes Portal mit erweiterten Funktionen für Folierer und Endkunden. Die monatliche Nutzerzahl steigt auf über 30.000 Besucher.</p>
+<div class="grid grid-cols-2 gap-4">
+<img src="https://readdy.ai/api/search-image?query=A%2520modern%2520website%2520redesign%2520for%2520a%2520car%2520wrapping%2520portal%2520shown%2520on%2520a%2520desktop%2520screen.%2520The%2520website%2520has%2520a%2520sleek%252C%2520contemporary%2520design%2520with%2520improved%2520user%2520interface%2520elements.%2520High-quality%2520web%2520design%2520mockup.&width=300&height=200&seq=34&orientation=landscape" alt="Portal Relaunch" class="w-full h-32 object-cover rounded-lg">
+<img src="https://readdy.ai/api/search-image?query=A%2520business%2520analytics%2520dashboard%2520showing%2520growing%2520user%2520metrics%2520and%2520positive%2520performance%2520data.%2520The%2520screen%2520displays%2520charts%2520and%2520graphs%2520with%2520upward%2520trends.%2520Professional%2520business%2520analytics%2520visualization.&width=300&height=200&seq=35&orientation=landscape" alt="Nutzerwachstum" class="w-full h-32 object-cover rounded-lg">
+</div>
+</div>
+</div>
+<!-- Timeline Item 5 -->
+<div class="relative timeline-item">
+<div class="timeline-dot"></div>
+<div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+<div class="flex flex-col md:flex-row justify-between mb-2">
+<h3 class="text-xl font-bold text-primary">Heute: Marktführer in Deutschland</h3>
+<span class="text-gray-500">2025</span>
+</div>
+<p class="text-gray-700 mb-4">Mit über 50.000 monatlichen Lesern, mehr als 500 registrierten Folierern und strategischen Partnerschaften mit allen führenden Herstellern sind wir heute die zentrale Plattform für Fahrzeugfolierung in Deutschland.</p>
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520team%2520photo%2520of%2520a%2520diverse%2520group%2520of%2520media%2520and%2520automotive%2520specialists%2520in%2520a%2520modern%2520office%2520environment.%2520The%2520team%2520appears%2520confident%2520and%2520successful.%2520High-quality%2520corporate%2520photography%2520with%2520professional%2520lighting.&width=600&height=400&seq=36&orientation=landscape" alt="Team heute" class="w-full h-48 object-cover rounded-lg">
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Vision Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Mission Column -->
+<div class="md:w-1/2 bg-white rounded-lg p-8 shadow-md">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-flag-line text-primary text-3xl"></i>
+</div>
+<h2 class="text-3xl font-bold mb-6">Unsere Mission</h2>
+<p class="text-gray-700 mb-8">Wir verbinden Fahrzeugbesitzer mit den besten Folierungsexperten Deutschlands und bieten gleichzeitig fundierte Informationen zu Trends, Techniken und Materialien. Unser Ziel ist es, die Qualitätsstandards in der Branche zu heben und Transparenz für Endkunden zu schaffen.</p>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-check-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Qualität fördern</h3>
+<p class="text-gray-600">Wir setzen uns für höchste Qualitätsstandards in der Fahrzeugfolierung ein und fördern professionelle Arbeitsweisen.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-check-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Wissen teilen</h3>
+<p class="text-gray-600">Durch fundierte Fachartikel, Tutorials und Expertentipps machen wir Branchenwissen zugänglich.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-check-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Vernetzung schaffen</h3>
+<p class="text-gray-600">Wir bringen Kunden, Folierer und Hersteller zusammen und fördern den Austausch in der Community.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Vision Column -->
+<div class="md:w-1/2 bg-white rounded-lg p-8 shadow-md">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-eye-line text-primary text-3xl"></i>
+</div>
+<h2 class="text-3xl font-bold mb-6">Unsere Vision</h2>
+<p class="text-gray-700 mb-8">Wir streben danach, die Fahrzeugfolierung als hochwertige Alternative zur Lackierung zu etablieren und die Branche durch Innovation und Digitalisierung voranzubringen. Bis 2030 wollen wir das europaweit führende Portal für Fahrzeugindividualisierung werden.</p>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-rocket-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Internationale Expansion</h3>
+<p class="text-gray-600">Wir planen, unser erfolgreiches Konzept auf weitere europäische Märkte auszuweiten.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-smartphone-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Digitale Innovation</h3>
+<p class="text-gray-600">Durch neue Technologien wie AR-Visualisierung wollen wir das Kundenerlebnis revolutionieren.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-recycle-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Nachhaltigkeit</h3>
+<p class="text-gray-600">Wir fördern umweltfreundliche Folierungslösungen und ressourcenschonende Praktiken in der Branche.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section id="team" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Unser Team</h2>
+<p class="text-gray-700 max-w-3xl mx-auto">Lernen Sie die Experten kennen, die mit Leidenschaft und Fachwissen hinter dem führenden Portal für Fahrzeugfolierung stehen.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+<!-- Team Member 1 - Christine -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520headshot%2520of%2520a%2520female%2520office%2520manager%2520in%2520her%252040s%2520with%2520short%2520blonde%2520hair%2520and%2520a%2520friendly%2520smile.%2520She%2520is%2520wearing%2520business%2520casual%2520attire%2520and%2520appears%2520approachable%2520and%2520professional.%2520The%2520photo%2520has%2520a%2520neutral%2520background%2520and%2520professional%2520studio%2520lighting.&width=400&height=500&seq=50&orientation=portrait" alt="Christine Maier" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Christine Maier</h3>
+<p class="text-primary font-medium mb-3">Büro Management</p>
+<p class="text-gray-600 mb-4">+49-(0)8171/38 636-0</p>
+<p class="text-gray-600 mb-4">office@wnp.de</p>
+<p class="text-gray-600 mb-4">Als erfahrene Office Managerin sorgt Christine für einen reibungslosen Ablauf aller administrativen Prozesse und ist die erste Anlaufstelle für Kunden und Partner.</p>
+<div class="flex space-x-3">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 2 - Lisa -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520headshot%2520of%2520a%2520female%2520office%2520manager%2520in%2520her%252030s%2520with%2520long%2520brown%2520hair%2520and%2520a%2520confident%2520smile.%2520She%2520is%2520wearing%2520business%2520casual%2520attire%2520and%2520appears%2520approachable%2520and%2520professional.%2520The%2520photo%2520has%2520a%2520neutral%2520background%2520and%2520professional%2520studio%2520lighting.&width=400&height=500&seq=51&orientation=portrait" alt="Lisa Richter" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Lisa Richter</h3>
+<p class="text-primary font-medium mb-3">Büro Management</p>
+<p class="text-gray-600 mb-4">+49-(0)8171/38 636-0</p>
+<p class="text-gray-600 mb-4">office@wnp.de</p>
+<p class="text-gray-600 mb-4">Lisa unterstützt das Team im Büro Management und stellt sicher, dass alle organisatorischen Abläufe optimal koordiniert werden.</p>
+<div class="flex space-x-3">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 3 - Sandra -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520headshot%2520of%2520a%2520female%2520publishing%2520director%2520in%2520her%252040s%2520with%2520shoulder-length%2520dark%2520hair%2520and%2520a%2520professional%2520expression.%2520She%2520is%2520wearing%2520business%2520attire%2520and%2520appears%2520confident%2520and%2520authoritative.%2520The%2520photo%2520has%2520a%2520neutral%2520background%2520and%2520professional%2520studio%2520lighting.&width=400&height=500&seq=52&orientation=portrait" alt="Sandra Johnson" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Sandra Johnson</h3>
+<p class="text-primary font-medium mb-3">Verlagsleiterin</p>
+<p class="text-gray-600 mb-4">+49-(0)8171/38 636-15</p>
+<p class="text-gray-600 mb-4">johnson@wnp.de</p>
+<p class="text-gray-600 mb-4">Als Verlagsleiterin steuert Sandra die strategische Ausrichtung des Verlags und koordiniert die verschiedenen Abteilungen für optimale Ergebnisse.</p>
+<div class="flex space-x-3">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 4 - Annett -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520headshot%2520of%2520a%2520female%2520sales%2520manager%2520in%2520her%252050s%2520with%2520short%2520blonde%2520hair%2520and%2520glasses.%2520She%2520is%2520wearing%2520business%2520attire%2520and%2520appears%2520friendly%2520and%2520professional.%2520The%2520photo%2520has%2520a%2520neutral%2520background%2520and%2520professional%2520studio%2520lighting.&width=400&height=500&seq=53&orientation=portrait" alt="Annett Geuge-Metzler" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Annett Geuge-Metzler</h3>
+<p class="text-primary font-medium mb-3">Vertrieb Print + Online</p>
+<p class="text-gray-600 mb-4">+49-(0)5194 / 584061</p>
+<p class="text-gray-600 mb-4">geuge-metzler@wnp.de</p>
+<p class="text-gray-600 mb-4">Annett leitet den Vertrieb für Print- und Online-Medien und entwickelt innovative Vertriebsstrategien für unsere verschiedenen Publikationsformate.</p>
+<div class="flex space-x-3">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 5 - Anja -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520headshot%2520of%2520a%2520female%2520editor%2520in%2520her%252030s%2520with%2520medium-length%2520brown%2520hair%2520and%2520a%2520friendly%2520smile.%2520She%2520is%2520wearing%2520casual%2520business%2520attire%2520and%2520appears%2520creative%2520and%2520approachable.%2520The%2520photo%2520has%2520a%2520neutral%2520background%2520and%2520professional%2520studio%2520lighting.&width=400&height=500&seq=54&orientation=portrait" alt="Anja Schmidtkunz" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Anja Schmidtkunz</h3>
+<p class="text-primary font-medium mb-3">Redaktion</p>
+<p class="text-gray-600 mb-4">+49-(0)8171/38 636-21</p>
+<p class="text-gray-600 mb-4">schmidtkunz@wnp.de</p>
+<p class="text-gray-600 mb-4">Als erfahrene Redakteurin verantwortet Anja die inhaltliche Qualität unserer Print- und Online-Publikationen und koordiniert unser Netzwerk freier Autoren.</p>
+<div class="flex space-x-3">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 6 - Dani -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-64 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520headshot%2520of%2520a%2520female%2520editor%2520in%2520her%252020s%2520with%2520long%2520dark%2520hair%2520and%2520a%2520creative%2520style.%2520She%2520is%2520wearing%2520casual%2520business%2520attire%2520and%2520appears%2520modern%2520and%2520innovative.%2520The%2520photo%2520has%2520a%2520neutral%2520background%2520and%2520professional%2520studio%2520lighting.&width=400&height=500&seq=55&orientation=portrait" alt="Dani Rehm" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Dani Rehm</h3>
+<p class="text-primary font-medium mb-3">Redaktion</p>
+<p class="text-gray-600 mb-4">+49-(0)8171/38 636-25</p>
+<p class="text-gray-600 mb-4">rehm@wnp.de</p>
+<p class="text-gray-600 mb-4">Dani ist spezialisiert auf digitale Inhalte und betreut unsere Online-Plattform. Sie sorgt für aktuelle News, spannende Interviews und hilfreiche Tutorials für unsere Community.</p>
+<div class="flex space-x-3">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-twitter-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center">
+<p class="text-gray-700 max-w-3xl mx-auto mb-8">Unser erfahrenes Team arbeitet täglich daran, die Plattform weiterzuentwickeln und Ihnen den bestmöglichen Service zu bieten. Gemeinsam bringen wir mehr als 50 Jahre Branchenerfahrung mit.</p>
+<a href="#kontakt" class="inline-flex items-center bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap cursor-pointer">
+Mit uns Kontakt aufnehmen
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- Success Stories Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Erfolgsgeschichten</h2>
+<p class="text-gray-700 max-w-3xl mx-auto">Entdecken Sie, wie unser Portal Folierern zu mehr Sichtbarkeit und Erfolg verholfen hat und wie wir die Branche positiv beeinflussen.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+<!-- Success Story 1 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
+<div class="md:w-2/5">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520car%2520wrapping%2520workshop%2520with%2520a%2520team%2520of%2520specialists%2520working%2520on%2520luxury%2520vehicles.%2520The%2520workshop%2520is%2520modern%2520and%2520well-equipped%252C%2520showing%2520a%2520successful%2520business%2520environment.%2520High-quality%2520business%2520photography.&width=400&height=500&seq=39&orientation=portrait" alt="CarWrap Experts" class="w-full h-full object-cover">
+</div>
+<div class="md:w-3/5 p-6">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=A%2520modern%252C%2520professional%2520logo%2520for%2520a%2520car%2520wrapping%2520company.%2520The%2520logo%2520is%2520simple%252C%2520clean%2520and%2520memorable%2520with%2520automotive%2520design%2520elements.%2520Suitable%2520for%2520a%2520vehicle%2520wrapping%2520business%2520with%2520a%2520premium%2520feel.&width=60&height=60&seq=6&orientation=squarish" alt="CarWrap Experts" class="w-12 h-12 rounded-full mr-4">
+<h3 class="text-xl font-bold">CarWrap Experts GmbH</h3>
+</div>
+<p class="text-gray-600 mb-4">"Seit wir uns auf dem Portal registriert haben, haben wir einen Anstieg der Kundenanfragen um 40% verzeichnet. Die Qualität der Leads ist hervorragend, da die Kunden bereits gut informiert sind und genau wissen, was sie wollen."</p>
+<div class="flex items-center mb-4">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<span class="text-sm text-gray-600 ml-2">Partner seit 2019</span>
+</div>
+<div class="flex items-center text-sm text-gray-700">
+<span class="font-medium">Andreas Müller</span>
+<span class="mx-2">•</span>
+<span>Geschäftsführer, München</span>
+</div>
+</div>
+</div>
+<!-- Success Story 2 -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
+<div class="md:w-2/5">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520vehicle%2520wrapping%2520business%2520with%2520staff%2520working%2520on%2520a%2520custom%2520motorcycle%2520wrap.%2520The%2520shop%2520is%2520clean%2520and%2520organized%252C%2520showing%2520a%2520specialized%2520small%2520business.%2520High-quality%2520business%2520photography.&width=400&height=500&seq=40&orientation=portrait" alt="VinylPro Hamburg" class="w-full h-full object-cover">
+</div>
+<div class="md:w-3/5 p-6">
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=A%2520modern%252C%2520professional%2520logo%2520for%2520a%2520premium%2520car%2520wrapping%2520service.%2520The%2520logo%2520features%2520clean%2520lines%2520and%2520a%2520sophisticated%2520design%2520that%2520conveys%2520quality%2520and%2520precision.%2520Suitable%2520for%2520a%2520high-end%2520automotive%2520customization%2520business.&width=60&height=60&seq=8&orientation=squarish" alt="VinylPro Hamburg" class="w-12 h-12 rounded-full mr-4">
+<h3 class="text-xl font-bold">VinylPro Hamburg</h3>
+</div>
+<p class="text-gray-600 mb-4">"Als Spezialist für Motorradfolierung hat uns das Portal geholfen, genau die richtige Zielgruppe zu erreichen. Die Fachbeiträge im Magazin haben uns zusätzlich als Experten positioniert und unsere Markenbekanntheit gesteigert."</p>
+<div class="flex items-center mb-4">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<span class="text-sm text-gray-600 ml-2">Partner seit 2020</span>
+</div>
+<div class="flex items-center text-sm text-gray-700">
+<span class="font-medium">Sarah Bergmann</span>
+<span class="mx-2">•</span>
+<span>Inhaberin, Hamburg</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Statistics -->
+<div class="bg-white rounded-xl p-8 shadow-md">
+<div class="text-center mb-10">
+<h3 class="text-2xl font-bold mb-2">Unsere Erfolge in Zahlen</h3>
+<p class="text-gray-600">Messbare Ergebnisse, die den Erfolg unserer Plattform belegen</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-user-star-line text-primary text-2xl"></i>
+</div>
+<div class="text-4xl font-bold mb-2">500+</div>
+<p class="text-gray-600">Registrierte Folierer</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-eye-line text-primary text-2xl"></i>
+</div>
+<div class="text-4xl font-bold mb-2">50k+</div>
+<p class="text-gray-600">Monatliche Besucher</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-article-line text-primary text-2xl"></i>
+</div>
+<div class="text-4xl font-bold mb-2">120+</div>
+<p class="text-gray-600">Magazin-Ausgaben</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-link-m text-primary text-2xl"></i>
+</div>
+<div class="text-4xl font-bold mb-2">15+</div>
+<p class="text-gray-600">Herstellerpartnerschaften</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- WRAPS Magazine Section -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="lg:w-1/2">
+<span class="inline-block text-primary font-medium mb-4">UNSER FLAGGSCHIFF</span>
+<h2 class="text-3xl font-bold mb-6">Das WRAPS Magazin</h2>
+<p class="text-gray-700 mb-6">Als erstes deutschsprachiges Fachmagazin für Fahrzeugfolierung hat WRAPS seit 2012 die Branche maßgeblich geprägt und ist heute die führende Informationsquelle für Profis und Enthusiasten.</p>
+<div class="space-y-6 mb-8">
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-book-open-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Fachliche Expertise</h3>
+<p class="text-gray-600">Fundierte Artikel von Branchenexperten zu Techniken, Materialien und Trends.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-gallery-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Inspirierende Projekte</h3>
+<p class="text-gray-600">Vorstellung außergewöhnlicher Folierungsprojekte mit detaillierten Case Studies.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-global-line text-primary"></i>
+</div>
+<div>
+<h3 class="font-semibold mb-1">Internationale Reichweite</h3>
+<p class="text-gray-600">Berichterstattung von internationalen Messen und Events der Folierungsbranche.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<a href="#" class="group bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center cursor-pointer">
+Magazin abonnieren
+<i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+</a>
+<a href="#" class="group border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center transition-colors cursor-pointer">
+Digitale Ausgaben
+<i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+</a>
+</div>
+</div>
+<div class="lg:w-1/2">
+<div class="grid grid-cols-2 gap-6">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520magazine%2520about%2520car%2520wrapping%2520with%2520a%2520modern%2520design.%2520The%2520magazine%2520cover%2520shows%2520a%2520luxury%2520sports%2520car%2520with%2520a%2520stunning%2520metallic%2520wrap.%2520The%2520magazine%2520has%2520a%2520clean%2520layout%2520with%2520the%2520title%2520WRAPS%2520clearly%2520visible.%2520High-quality%2520print%2520magazine%2520photography.&width=300&height=400&seq=41&orientation=portrait" alt="WRAPS Magazin Cover 1" class="w-full h-auto rounded-lg shadow-lg transform rotate-3">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520magazine%2520about%2520car%2520wrapping%2520with%2520a%2520modern%2520design.%2520The%2520magazine%2520cover%2520shows%2520a%2520custom%2520motorcycle%2520with%2520a%2520vibrant%2520wrap%2520design.%2520The%2520magazine%2520has%2520a%2520clean%2520layout%2520with%2520the%2520title%2520WRAPS%2520clearly%2520visible.%2520High-quality%2520print%2520magazine%2520photography.&width=300&height=400&seq=42&orientation=portrait" alt="WRAPS Magazin Cover 2" class="w-full h-auto rounded-lg shadow-lg transform -rotate-3 mt-8">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520magazine%2520about%2520car%2520wrapping%2520with%2520a%2520modern%2520design.%2520The%2520magazine%2520cover%2520shows%2520a%2520commercial%2520vehicle%2520with%2520a%2520business%2520wrap%2520and%2520graphics.%2520The%2520magazine%2520has%2520a%2520clean%2520layout%2520with%2520the%2520title%2520WRAPS%2520clearly%2520visible.%2520High-quality%2520print%2520magazine%2520photography.&width=300&height=400&seq=43&orientation=portrait" alt="WRAPS Magazin Cover 3" class="w-full h-auto rounded-lg shadow-lg transform -rotate-6 mt-4">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%2520magazine%2520about%2520car%2520wrapping%2520with%2520a%2520modern%2520design.%2520The%2520magazine%2520cover%2520shows%2520a%2520close-up%2520of%2520a%2520car%2520wrapping%2520technique%2520or%2520material%2520texture.%2520The%2520magazine%2520has%2520a%2520clean%2520layout%2520with%2520the%2520title%2520WRAPS%2520clearly%2520visible.%2520High-quality%2520print%2520magazine%2520photography.&width=300&height=400&seq=44&orientation=portrait" alt="WRAPS Magazin Cover 4" class="w-full h-auto rounded-lg shadow-lg transform rotate-6 mt-2">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partners Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Unsere Partner & Zertifizierungen</h2>
+<p class="text-gray-700 max-w-3xl mx-auto">Wir arbeiten mit führenden Herstellern und Verbänden zusammen, um die Qualität und Innovation in der Branche voranzutreiben.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
+<!-- Partner 1 -->
+<div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center justify-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%252C%2520modern%2520logo%2520for%25203M%2520automotive%2520division.%2520Clean%252C%2520corporate%2520design%2520with%2520blue%2520and%2520white%2520colors.%2520The%2520logo%2520should%2520be%2520simple%2520and%2520recognizable%252C%2520suitable%2520for%2520vehicle%2520wrap%2520industry.&width=120&height=80&seq=10&orientation=landscape" alt="3M" class="h-12 object-contain mb-4">
+<h3 class="font-bold text-center">3M™</h3>
+</div>
+<!-- Partner 2 -->
+<div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center justify-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%252C%2520modern%2520logo%2520for%2520Avery%2520Dennison%2520graphics%2520solutions.%2520Clean%252C%2520corporate%2520design%2520focusing%2520on%2520vehicle%2520wrap%2520materials.%2520The%2520logo%2520should%2520be%2520simple%2520and%2520recognizable.&width=120&height=80&seq=11&orientation=landscape" alt="Avery Dennison" class="h-12 object-contain mb-4">
+<h3 class="font-bold text-center">Avery Dennison</h3>
+</div>
+<!-- Partner 3 -->
+<div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center justify-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%252C%2520modern%2520logo%2520for%2520ORAFOL%2520vehicle%2520wrap%2520materials.%2520Clean%252C%2520corporate%2520design%2520with%2520focus%2520on%2520automotive%2520films.%2520The%2520logo%2520should%2520be%2520simple%2520and%2520recognizable.&width=120&height=80&seq=12&orientation=landscape" alt="ORAFOL" class="h-12 object-contain mb-4">
+<h3 class="font-bold text-center">ORAFOL</h3>
+</div>
+<!-- Partner 4 -->
+<div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center justify-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%252C%2520modern%2520logo%2520for%2520Hexis%2520vehicle%2520wrap%2520materials.%2520Clean%252C%2520corporate%2520design%2520with%2520focus%2520on%2520automotive%2520films.%2520The%2520logo%2520should%2520be%2520simple%2520and%2520recognizable.&width=120&height=80&seq=45&orientation=landscape" alt="Hexis" class="h-12 object-contain mb-4">
+<h3 class="font-bold text-center">Hexis</h3>
+</div>
+<!-- Partner 5 -->
+<div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center justify-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%252C%2520modern%2520logo%2520for%2520KPMF%2520vehicle%2520wrap%2520materials.%2520Clean%252C%2520corporate%2520design%2520with%2520focus%2520on%2520automotive%2520films.%2520The%2520logo%2520should%2520be%2520simple%2520and%2520recognizable.&width=120&height=80&seq=46&orientation=landscape" alt="KPMF" class="h-12 object-contain mb-4">
+<h3 class="font-bold text-center">KPMF</h3>
+</div>
+<!-- Partner 6 -->
+<div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center justify-center cursor-pointer">
+<img src="https://readdy.ai/api/search-image?query=A%2520professional%252C%2520modern%2520logo%2520for%2520a%2520German%2520automotive%2520industry%2520association.%2520Clean%252C%2520corporate%2520design%2520suitable%2520for%2520an%2520official%2520industry%2520organization.%2520The%2520logo%2520should%2520be%2520simple%2520and%2520recognizable.&width=120&height=80&seq=47&orientation=landscape" alt="Verband" class="h-12 object-contain mb-4">
+<h3 class="font-bold text-center">BFA</h3>
+</div>
+</div>
+<!-- Awards & Certifications -->
+<div class="bg-white rounded-xl p-8 shadow-md">
+<div class="text-center mb-10">
+<h3 class="text-2xl font-bold mb-2">Auszeichnungen & Zertifizierungen</h3>
+<p class="text-gray-600">Wir sind stolz auf die Anerkennung unserer Arbeit in der Branche</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-award-line text-primary text-xl"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Fachmedium des Jahres 2022</h4>
+<p class="text-gray-600 text-sm">Ausgezeichnet vom Verband der Fachmedien für herausragende redaktionelle Qualität.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-verified-badge-line text-primary text-xl"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Offizieller Partner des BFA</h4>
+<p class="text-gray-600 text-sm">Anerkannt vom Bundesverband für Fahrzeugfolierung als offizielles Branchenmedium.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+<i class="ri-medal-line text-primary text-xl"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Digital Publishing Award 2023</h4>
+<p class="text-gray-600 text-sm">Ausgezeichnet für die erfolgreiche Transformation vom Print- zum Digitalmedium.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact CTA Section -->
+<section id="kontakt" class="py-20 bg-white">
+<div class="container mx-auto px-4">
+<div class="bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 rounded-2xl p-12 relative overflow-hidden backdrop-blur-sm">
+<div class="absolute inset-0 bg-white/40"></div>
+<div class="relative">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Kontaktieren Sie uns</h2>
+<p class="text-gray-700 max-w-2xl mx-auto">Haben Sie Fragen zu unserem Portal, dem Magazin oder möglichen Kooperationen? Unser Team steht Ihnen gerne zur Verfügung.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white rounded-lg p-6 shadow-md text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+<i class="ri-mail-line text-primary text-xl"></i>
+</div>
+<h3 class="font-bold mb-2">E-Mail</h3>
+<p class="text-gray-600 mb-4">Schreiben Sie uns eine Nachricht</p>
+<a href="mailto:info@wrap-style.de" class="text-primary font-medium">info@wrap-style.de</a>
+</div>
+<div class="bg-white rounded-lg p-6 shadow-md text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+<i class="ri-phone-line text-primary text-xl"></i>
+</div>
+<h3 class="font-bold mb-2">Telefon</h3>
+<p class="text-gray-600 mb-4">Mo-Fr, 9:00 - 17:00 Uhr</p>
+<a href="tel:+4989123456789" class="text-primary font-medium">+49 89 123 456 789</a>
+</div>
+<div class="bg-white rounded-lg p-6 shadow-md text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+<i class="ri-map-pin-line text-primary text-xl"></i>
+</div>
+<h3 class="font-bold mb-2">Adresse</h3>
+<p class="text-gray-600 mb-4">Besuchen Sie uns</p>
+<address class="text-primary font-medium not-italic">Musterstraße 123<br>80331 München</address>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md p-8">
+<h3 class="text-2xl font-bold mb-6 text-center">Kontaktformular</h3>
+<form>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+<input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-Mail *</label>
+<input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+</div>
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Betreff *</label>
+<input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium text-gray-700 mb-2">Nachricht *</label>
+<textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+</div>
+<div class="flex items-start mb-6">
+<div class="flex items-center h-5">
+<input id="privacy" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary" required>
+</div>
+<label for="privacy" class="ml-2 text-sm text-gray-600">Ich stimme der <a href="#" class="text-primary">Datenschutzerklärung</a> zu und akzeptiere, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert werden. *</label>
+</div>
+<div class="text-center">
+<button type="submit" class="bg-primary hover:bg-primary/90 text-white py-3 px-8 !rounded-button font-medium whitespace-nowrap cursor-pointer">Nachricht senden</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<div class="text-2xl font-['Pacifico'] mb-4">wrap & style</div>
+<p class="text-gray-400 mb-6">Das führende Portal und Magazin für Fahrzeugfolierung in Deutschland. Seit über 10 Jahren Ihr verlässlicher Partner in der Folierungsbranche.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<i class="ri-youtube-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Schnellzugriff</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Startseite</a></li>
+<li><a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/2e65122c-b6f9-4d6a-ab20-caadb2d1ff76" data-readdy="true" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Über uns</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Magazin</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Folierer finden</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Als Folierer eintragen</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Rechtliches</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Impressum</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Datenschutz</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">AGB</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors cursor-pointer">Cookie-Einstellungen</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold mb-4">Newsletter</h3>
+<p class="text-gray-400 mb-4">Bleiben Sie auf dem Laufenden mit den neuesten Trends und Tipps zur Fahrzeugfolierung.</p>
+<form class="mb-4">
+<div class="flex">
+<input type="email" placeholder="Ihre E-Mail-Adresse" class="flex-grow px-4 py-2 rounded-l-md border-none focus:outline-none text-gray-900">
+<button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md whitespace-nowrap cursor-pointer">Anmelden</button>
+</div>
+</form>
+<a href="#" class="flex items-center text-gray-400 hover:text-white transition-colors cursor-pointer">
+<i class="ri-book-open-line mr-2"></i>
+<span>Magazin digital lesen</span>
+</a>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 WNP Medien GmbH. Alle Rechte vorbehalten.</p>
+<div class="flex space-x-6">
+<i class="ri-visa-line text-gray-400 text-2xl"></i>
+<i class="ri-mastercard-line text-gray-400 text-2xl"></i>
+<i class="ri-paypal-line text-gray-400 text-2xl"></i>
+<i class="ri-amazon-pay-line text-gray-400 text-2xl"></i>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script id="header-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const header = document.querySelector('header');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 50) {
+header.classList.add('bg-white', 'shadow-md');
+header.classList.remove('bg-transparent');
+// Change text color
+const navLinks = header.querySelectorAll('nav a');
+navLinks.forEach(link => {
+link.classList.remove('text-white');
+link.classList.add('text-gray-800');
+});
+// Change logo color
+const logo = header.querySelector('.font-[\'Pacifico\']');
+logo.classList.remove('text-white');
+logo.classList.add('text-primary');
+// Change menu icon color
+const menuIcon = header.querySelector('.ri-menu-line');
+if (menuIcon) {
+menuIcon.parentElement.classList.remove('text-white');
+menuIcon.parentElement.classList.add('text-gray-800');
+}
+} else {
+header.classList.remove('bg-white', 'shadow-md');
+header.classList.add('bg-transparent');
+// Revert text color
+const navLinks = header.querySelectorAll('nav a');
+navLinks.forEach(link => {
+link.classList.remove('text-gray-800');
+link.classList.add('text-white');
+});
+// Revert logo color
+const logo = header.querySelector('.font-[\'Pacifico\']');
+logo.classList.remove('text-primary');
+logo.classList.add('text-white');
+// Revert menu icon color
+const menuIcon = header.querySelector('.ri-menu-line');
+if (menuIcon) {
+menuIcon.parentElement.classList.remove('text-gray-800');
+menuIcon.parentElement.classList.add('text-white');
+}
+}
+});
+});
+</script>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 100,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>

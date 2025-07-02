@@ -1,0 +1,23 @@
+/* embla.css */
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  /* Add a gap between slides */
+  margin-left: -1rem; /* Counteract the padding on the slides */
+}
+.embla__slide {
+  /* Mobile-first: 2 slides visible */
+  flex: 0 0 50%;
+  min-width: 0;
+  /* Add spacing between slides */
+  padding-left: 1rem;
+}
+
+/* Desktop: 5 slides visible */
+@media (min-width: 768px) {
+  .embla__slide {
+    flex: 0 0 20%;
+  }
+}

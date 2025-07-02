@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banner-Werbung - wrap & style</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00D1C7',secondary:'#1E293B'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Inter', sans-serif;
+}
+.hero-section {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.2) 100%), url('https://readdy.ai/api/search-image?query=Professional%2520banner%2520advertising%2520on%2520a%2520car%2520wrapping%2520website%252C%2520showing%2520high-quality%2520digital%2520marketing%2520for%2520automotive%2520industry.%2520The%2520image%2520displays%2520a%2520sleek%2520website%2520interface%2520with%2520banner%2520ads%2520for%2520car%2520wrapping%2520services%252C%2520vehicle%2520vinyl%2520wrap%2520products%252C%2520and%2520automotive%2520customization.%2520Clean%252C%2520modern%2520web%2520design%2520with%2520strategic%2520ad%2520placement%2520that%2520attracts%2520attention%2520without%2520being%2520intrusive.&width=1920&height=600&seq=101&orientation=landscape');
+  background-size: cover;
+  background-position: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.custom-checkbox {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+  border-color: #ccc;
+}
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #00D1C7;
+  border-color: #00D1C7;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.testimonial-slider {
+  scroll-behavior: smooth;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Header & Navigation -->
+<header class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-primary text-2xl font-['Pacifico']">logo</div>
+    <nav class="hidden md:flex space-x-8">
+      <a href="#" class="text-gray-800 hover:text-primary font-medium">Startseite</a>
+      <a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/0d91da66-e19b-4967-b368-98cf36dfef97" data-readdy="true" class="text-gray-800 hover:text-primary font-medium">Über uns</a>
+      <a href="#" class="text-gray-800 hover:text-primary font-medium">Magazin</a>
+      <a href="#" class="text-gray-800 hover:text-primary font-medium">Folierer finden</a>
+      <a href="#" class="text-gray-800 hover:text-primary font-medium">Kontakt</a>
+    </nav>
+    <div class="md:hidden w-8 h-8 flex items-center justify-center text-gray-800">
+      <i class="ri-menu-line ri-2x"></i>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="bg-gray-100 py-3">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center text-sm text-gray-600">
+      <a href="#" class="hover:text-primary">Home</a>
+      <i class="ri-arrow-right-s-line mx-2"></i>
+      <a href="#" class="hover:text-primary">Werbemöglichkeiten</a>
+      <i class="ri-arrow-right-s-line mx-2"></i>
+      <span class="text-gray-800 font-medium">Banner-Werbung</span>
+    </div>
+  </div>
+</div>
+
+<!-- Back Button -->
+<div class="container mx-auto px-4 py-6">
+  <a href="https://readdy.ai/home/eb5bec31-0b78-4c3a-9b38-b59d258e4779/2e65122c-b6f9-4d6a-ab20-caadb2d1ff76" data-readdy="true" class="inline-flex items-center text-gray-600 hover:text-primary">
+    <i class="ri-arrow-left-line mr-2"></i>
+    <span>Zurück zur Übersicht</span>
+  </a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero-section py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl text-white">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Banner-Werbung auf Deutschlands führendem Folierungsportal</h1>
+      <p class="text-xl mb-8 leading-relaxed">Erreichen Sie über 50.000 monatliche Besucher – vom DIY-Enthusiasten bis zum professionellen Folierer. Steigern Sie Ihre Markenbekanntheit und generieren Sie qualifizierte Leads.</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#kontakt" class="group bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
+          Jetzt Werbefläche anfragen
+          <i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+        </a>
+        <a href="#preise" class="group bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
+          Preise & Pakete
+          <i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Metrics -->
+<section class="py-12 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="text-4xl font-bold text-primary mb-2">50.000+</div>
+        <p class="text-gray-700">Monatliche Besucher</p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-primary mb-2">3,5 Min.</div>
+        <p class="text-gray-700">Durchschnittliche Verweildauer</p>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-primary mb-2">72%</div>
+        <p class="text-gray-700">Wiederkehrende Besucher</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Main Content -->
+      <div class="lg:w-2/3">
+        <h2 class="text-3xl font-bold mb-8">Ihre Vorteile auf einen Blick</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="ri-target-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Zielgruppengenau</h3>
+            <p class="text-gray-600">Erreichen Sie genau die Zielgruppe, die sich für Fahrzeugfolierung und Fahrzeugindividualisierung interessiert.</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="ri-eye-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Hohe Sichtbarkeit</h3>
+            <p class="text-gray-600">Platzieren Sie Ihre Werbung an strategisch wichtigen Positionen mit hoher Aufmerksamkeit.</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="ri-line-chart-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Messbare Ergebnisse</h3>
+            <p class="text-gray-600">Erhalten Sie detaillierte Auswertungen zu Impressionen, Klicks und Conversion-Raten.</p>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <i class="ri-layout-masonry-line text-primary ri-lg"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Flexible Formate</h3>
+            <p class="text-gray-600">Wählen Sie aus verschiedenen Bannerformaten und Platzierungsmöglichkeiten.</p>
+          </div>
+        </div>
+        
+        <h2 class="text-3xl font-bold mb-6">Detaillierte Beschreibung</h2>
+        <p class="text-gray-700 mb-6">Mit unseren maßgeschneiderten Banner-Werbemöglichkeiten bieten wir Ihnen die perfekte Plattform, um Ihre Marke, Produkte oder Dienstleistungen einem hochrelevanten Publikum zu präsentieren. Als führendes Portal für Fahrzeugfolierung in Deutschland erreichen wir sowohl Endkunden als auch professionelle Folierer.</p>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm mb-12">
+          <h3 class="text-2xl font-bold mb-6">Unsere Zielgruppe im Detail</h3>
+          
+          <div class="mb-8">
+            <h4 class="font-bold text-lg mb-4">Besucherstruktur</h4>
+            <div id="visitor-chart" class="w-full h-80"></div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-lg mb-4">Demografische Daten</h4>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="ri-user-line text-primary"></i>
+                  </div>
+                  <span>78% männlich, 22% weiblich</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="ri-calendar-line text-primary"></i>
+                  </div>
+                  <span>Hauptaltersgruppe: 25-45 Jahre</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="ri-money-euro-circle-line text-primary"></i>
+                  </div>
+                  <span>Überdurchschnittliches Einkommen</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 class="font-bold text-lg mb-4">Interessen</h4>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="ri-car-line text-primary"></i>
+                  </div>
+                  <span>Fahrzeugindividualisierung</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="ri-tools-line text-primary"></i>
+                  </div>
+                  <span>DIY-Projekte & Tuning</span>
+                </li>
+                <li class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="ri-paint-brush-line text-primary"></i>
+                  </div>
+                  <span>Design & Ästhetik</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <h3 class="text-2xl font-bold mb-6">Platzierungsmöglichkeiten</h3>
+        <p class="text-gray-700 mb-6">Wir bieten verschiedene strategische Platzierungsmöglichkeiten für Ihre Banner-Werbung an. Je nach Ihren Marketingzielen und Ihrem Budget können Sie die optimale Position wählen:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+            <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520website%2520mockup%2520showing%2520a%2520header%2520banner%2520advertisement%2520on%2520a%2520car%2520wrapping%2520website.%2520The%2520image%2520displays%2520a%2520clean%252C%2520modern%2520website%2520interface%2520with%2520a%2520prominent%2520horizontal%2520banner%2520at%2520the%2520top%2520of%2520the%2520page.%2520The%2520banner%2520shows%2520high-quality%2520car%2520wrapping%2520products%2520or%2520services.%2520Professional%2520web%2520design%2520with%2520clear%2520visibility%2520of%2520the%2520advertising%2520space.&width=600&height=400&seq=102&orientation=landscape" alt="Header Banner" class="w-full h-48 object-cover object-top">
+            <div class="p-6">
+              <h4 class="text-xl font-bold mb-3">Header Banner</h4>
+              <p class="text-gray-600 mb-4">Premium-Platzierung im oberen Bereich aller Seiten mit maximaler Sichtbarkeit bei jedem Seitenaufruf.</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Format: 970 x 250 px</span>
+                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Hohe CTR</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+            <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520website%2520mockup%2520showing%2520a%2520sidebar%2520banner%2520advertisement%2520on%2520a%2520car%2520wrapping%2520website.%2520The%2520image%2520displays%2520a%2520clean%252C%2520modern%2520website%2520interface%2520with%2520a%2520vertical%2520banner%2520ad%2520in%2520the%2520sidebar.%2520The%2520banner%2520shows%2520high-quality%2520car%2520wrapping%2520products%2520or%2520services.%2520Professional%2520web%2520design%2520with%2520clear%2520visibility%2520of%2520the%2520advertising%2520space.&width=600&height=400&seq=103&orientation=landscape" alt="Sidebar Banner" class="w-full h-48 object-cover object-top">
+            <div class="p-6">
+              <h4 class="text-xl font-bold mb-3">Sidebar Banner</h4>
+              <p class="text-gray-600 mb-4">Prominente Platzierung in der rechten Seitenleiste mit hoher Sichtbarkeit während des Scrollens.</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Format: 300 x 600 px</span>
+                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Lange Sichtbarkeit</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+            <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520website%2520mockup%2520showing%2520an%2520in-content%2520banner%2520advertisement%2520on%2520a%2520car%2520wrapping%2520website.%2520The%2520image%2520displays%2520a%2520clean%252C%2520modern%2520website%2520interface%2520with%2520a%2520horizontal%2520banner%2520placed%2520between%2520content%2520sections.%2520The%2520banner%2520shows%2520high-quality%2520car%2520wrapping%2520products%2520or%2520services.%2520Professional%2520web%2520design%2520with%2520clear%2520visibility%2520of%2520the%2520advertising%2520space.&width=600&height=400&seq=104&orientation=landscape" alt="Content Banner" class="w-full h-48 object-cover object-top">
+            <div class="p-6">
+              <h4 class="text-xl font-bold mb-3">Content Banner</h4>
+              <p class="text-gray-600 mb-4">Integration in redaktionelle Inhalte für hohe Aufmerksamkeit und thematische Relevanz.</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Format: 728 x 90 px</span>
+                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Hohe Relevanz</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+            <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520website%2520mockup%2520showing%2520a%2520footer%2520banner%2520advertisement%2520on%2520a%2520car%2520wrapping%2520website.%2520The%2520image%2520displays%2520a%2520clean%252C%2520modern%2520website%2520interface%2520with%2520a%2520horizontal%2520banner%2520at%2520the%2520bottom%2520of%2520the%2520page%2520before%2520the%2520footer.%2520The%2520banner%2520shows%2520high-quality%2520car%2520wrapping%2520products%2520or%2520services.%2520Professional%2520web%2520design%2520with%2520clear%2520visibility%2520of%2520the%2520advertising%2520space.&width=600&height=400&seq=105&orientation=landscape" alt="Footer Banner" class="w-full h-48 object-cover object-top">
+            <div class="p-6">
+              <h4 class="text-xl font-bold mb-3">Footer Banner</h4>
+              <p class="text-gray-600 mb-4">Platzierung im unteren Bereich der Seite für zusätzliche Sichtbarkeit am Ende des Nutzerflusses.</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">Format: 970 x 90 px</span>
+                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">Kosteneffizient</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3 id="preise" class="text-2xl font-bold mb-6">Preismodelle und Pakete</h3>
+        <p class="text-gray-700 mb-6">Wir bieten flexible Preismodelle, die auf Ihre individuellen Bedürfnisse zugeschnitten sind. Wählen Sie zwischen verschiedenen Laufzeiten und Platzierungen:</p>
+        
+        <div class="overflow-x-auto mb-12">
+          <table class="w-full bg-white rounded-lg shadow-sm">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="px-6 py-4 text-left text-gray-700 font-bold">Paket</th>
+                <th class="px-6 py-4 text-left text-gray-700 font-bold">Platzierung</th>
+                <th class="px-6 py-4 text-left text-gray-700 font-bold">Laufzeit</th>
+                <th class="px-6 py-4 text-left text-gray-700 font-bold">Preis (netto)</th>
+                <th class="px-6 py-4 text-left text-gray-700 font-bold">Erwartete Impressions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 font-medium">Basic</td>
+                <td class="px-6 py-4">Footer Banner</td>
+                <td class="px-6 py-4">1 Monat</td>
+                <td class="px-6 py-4">€ 499</td>
+                <td class="px-6 py-4">ca. 30.000</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium">Standard</td>
+                <td class="px-6 py-4">Sidebar Banner</td>
+                <td class="px-6 py-4">1 Monat</td>
+                <td class="px-6 py-4">€ 799</td>
+                <td class="px-6 py-4">ca. 45.000</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium">Premium</td>
+                <td class="px-6 py-4">Content Banner</td>
+                <td class="px-6 py-4">1 Monat</td>
+                <td class="px-6 py-4">€ 999</td>
+                <td class="px-6 py-4">ca. 60.000</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium">Exklusiv</td>
+                <td class="px-6 py-4">Header Banner</td>
+                <td class="px-6 py-4">1 Monat</td>
+                <td class="px-6 py-4">€ 1.499</td>
+                <td class="px-6 py-4">ca. 80.000</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium">Kombi-Paket</td>
+                <td class="px-6 py-4">Header + Sidebar</td>
+                <td class="px-6 py-4">1 Monat</td>
+                <td class="px-6 py-4">€ 1.999</td>
+                <td class="px-6 py-4">ca. 100.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="bg-primary/5 p-6 rounded-lg mb-12">
+          <h4 class="font-bold text-lg mb-3">Rabatte bei längeren Laufzeiten:</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>3 Monate: 10% Rabatt auf den Gesamtpreis</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>6 Monate: 15% Rabatt auf den Gesamtpreis</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-check-line text-primary mr-2 mt-1"></i>
+              <span>12 Monate: 25% Rabatt auf den Gesamtpreis</span>
+            </li>
+          </ul>
+        </div>
+        
+        <h3 class="text-2xl font-bold mb-6">Technische Spezifikationen</h3>
+        <p class="text-gray-700 mb-6">Um optimale Ergebnisse zu erzielen, beachten Sie bitte die folgenden technischen Anforderungen:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h4 class="font-bold text-lg mb-4">Dateiformate</h4>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                <span>JPG, PNG, GIF (statisch oder animiert)</span>
+              </li>
+              <li class="flex items-start">
+                <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                <span>HTML5 (als ZIP-Datei)</span>
+              </li>
+              <li class="flex items-start">
+                <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                <span>Maximale Dateigröße: 150 KB</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <h4 class="font-bold text-lg mb-4">Design-Empfehlungen</h4>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                <span>Klare Call-to-Actions</span>
+              </li>
+              <li class="flex items-start">
+                <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                <span>Responsive Design für mobile Ansicht</span>
+              </li>
+              <li class="flex items-start">
+                <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                <span>Kontrastreiche Farben für bessere Sichtbarkeit</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sidebar -->
+      <div class="lg:w-1/3">
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8 sticky top-24">
+          <h3 class="text-xl font-bold mb-6">Unser Service für Sie</h3>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start">
+              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-medium">Persönliche Beratung</h4>
+                <p class="text-sm text-gray-600">Individuelle Beratung zu optimalen Platzierungen und Formaten</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-medium">Banner-Erstellung</h4>
+                <p class="text-sm text-gray-600">Optionale Unterstützung bei der Gestaltung Ihrer Banner</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-medium">Detaillierte Auswertungen</h4>
+                <p class="text-sm text-gray-600">Regelmäßige Reports zu Performance und Conversion</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5">
+                <i class="ri-check-line text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-medium">Flexible Anpassungen</h4>
+                <p class="text-sm text-gray-600">Möglichkeit zur Optimierung während der Laufzeit</p>
+              </div>
+            </li>
+          </ul>
+          <a href="#kontakt" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap">Jetzt anfragen</a>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+          <h3 class="text-xl font-bold mb-6">Downloads</h3>
+          <ul class="space-y-4">
+            <li>
+              <a href="#" class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary group">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                  <i class="ri-file-pdf-line text-primary"></i>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-medium group-hover:text-primary">Mediadaten 2025</h4>
+                  <p class="text-sm text-gray-600">PDF, 2.4 MB</p>
+                </div>
+                <i class="ri-download-line text-gray-400 group-hover:text-primary"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary group">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                  <i class="ri-file-list-3-line text-primary"></i>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-medium group-hover:text-primary">Technische Spezifikationen</h4>
+                  <p class="text-sm text-gray-600">PDF, 1.1 MB</p>
+                </div>
+                <i class="ri-download-line text-gray-400 group-hover:text-primary"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary group">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                  <i class="ri-file-chart-line text-primary"></i>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-medium group-hover:text-primary">Besucheranalyse 2024</h4>
+                  <p class="text-sm text-gray-600">PDF, 3.8 MB</p>
+                </div>
+                <i class="ri-download-line text-gray-400 group-hover:text-primary"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-xl font-bold mb-6">Häufig gestellte Fragen</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium mb-2">Wie lange dauert es, bis mein Banner online ist?</h4>
+              <p class="text-sm text-gray-600">Nach Eingang aller Unterlagen und Freigabe ist Ihr Banner in der Regel innerhalb von 2-3 Werktagen online.</p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">Kann ich mein Banner während der Laufzeit austauschen?</h4>
+              <p class="text-sm text-gray-600">Ja, ein Austausch ist einmal pro Monat kostenlos möglich. Weitere Änderungen werden mit einer geringen Bearbeitungsgebühr berechnet.</p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">Welche Zahlungsmethoden werden akzeptiert?</h4>
+              <p class="text-sm text-gray-600">Wir akzeptieren Überweisung, PayPal und Kreditkartenzahlung. Die Rechnung wird zu Beginn der Laufzeit gestellt.</p>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2">Gibt es Einschränkungen bezüglich der Werbeinhalte?</h4>
+              <p class="text-sm text-gray-600">Ja, die Werbeinhalte müssen den gesetzlichen Bestimmungen entsprechen und thematisch zur Plattform passen. Detaillierte Informationen finden Sie in unseren AGB.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Success Stories -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Erfolgsbeispiele</h2>
+      <p class="text-gray-700 max-w-2xl mx-auto">Entdecken Sie, wie andere Unternehmen mit unseren Werbemöglichkeiten ihren Erfolg steigern konnten.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+      <!-- Case Study 1 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520before%2520and%2520after%2520comparison%2520of%2520a%2520car%2520wrapping%2520advertising%2520campaign.%2520The%2520image%2520shows%2520a%2520split%2520view%2520with%2520%2522before%2522%2520showing%2520basic%2520website%2520traffic%2520metrics%2520and%2520%2522after%2522%2520showing%2520improved%2520metrics%2520after%2520implementing%2520banner%2520advertising.%2520Clean%252C%2520professional%2520business%2520graphic%2520with%2520charts%2520and%2520data%2520visualization.&width=800&height=500&seq=106&orientation=landscape" alt="VinylTech Erfolgsgeschichte" class="w-full h-64 object-cover object-top">
+          <div class="absolute top-4 left-4 bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">
+            Fallstudie
+          </div>
+        </div>
+        <div class="p-8">
+          <div class="flex items-center mb-6">
+            <img src="https://readdy.ai/api/search-image?query=A%2520modern%252C%2520professional%2520logo%2520for%2520VinylTech%252C%2520a%2520company%2520specializing%2520in%2520vinyl%2520wrapping%2520materials.%2520The%2520logo%2520is%2520clean%252C%2520simple%2520and%2520recognizable%2520with%2520automotive%2520design%2520elements.%2520Suitable%2520for%2520a%2520vehicle%2520wrapping%2520materials%2520supplier.&width=60&height=60&seq=107&orientation=squarish" alt="VinylTech Logo" class="w-12 h-12 rounded-full object-contain mr-4">
+            <h3 class="text-xl font-bold">VinylTech GmbH</h3>
+          </div>
+          
+          <h4 class="font-bold text-lg mb-3">Herausforderung:</h4>
+          <p class="text-gray-600 mb-6">VinylTech wollte seine neue Premium-Folienreihe bei professionellen Folierern bekannt machen und die Markteinführung unterstützen.</p>
+          
+          <h4 class="font-bold text-lg mb-3">Lösung:</h4>
+          <p class="text-gray-600 mb-6">Kombination aus Header-Banner und Content-Integration im Fachbereich des Portals über einen Zeitraum von 3 Monaten.</p>
+          
+          <h4 class="font-bold text-lg mb-3">Ergebnisse:</h4>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <i class="ri-arrow-right-up-line text-primary mr-2 mt-1"></i>
+              <span>168% Steigerung der Website-Besuche</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-arrow-right-up-line text-primary mr-2 mt-1"></i>
+              <span>42 qualifizierte Händleranfragen</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-arrow-right-up-line text-primary mr-2 mt-1"></i>
+              <span>23% Umsatzsteigerung im Vergleich zum Vorquartal</span>
+            </li>
+          </ul>
+          
+          <div class="border-t border-gray-200 pt-6">
+            <blockquote class="italic text-gray-600">
+              "Die gezielte Ansprache auf wrap & style hat unsere Erwartungen übertroffen. Die Qualität der generierten Leads war außergewöhnlich hoch."
+              <footer class="mt-2 font-medium text-gray-800">- Markus Schneider, Marketingleiter bei VinylTech</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Case Study 2 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520before%2520and%2520after%2520comparison%2520of%2520a%2520car%2520wrapping%2520tool%2520advertising%2520campaign.%2520The%2520image%2520shows%2520a%2520split%2520view%2520with%2520%2522before%2522%2520showing%2520basic%2520sales%2520metrics%2520and%2520%2522after%2522%2520showing%2520improved%2520sales%2520after%2520implementing%2520banner%2520advertising.%2520Clean%252C%2520professional%2520business%2520graphic%2520with%2520charts%2520and%2520data%2520visualization.&width=800&height=500&seq=108&orientation=landscape" alt="ProWrap Erfolgsgeschichte" class="w-full h-64 object-cover object-top">
+          <div class="absolute top-4 left-4 bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">
+            Fallstudie
+          </div>
+        </div>
+        <div class="p-8">
+          <div class="flex items-center mb-6">
+            <img src="https://readdy.ai/api/search-image?query=A%2520modern%252C%2520professional%2520logo%2520for%2520ProWrap%2520Tools%252C%2520a%2520company%2520specializing%2520in%2520professional%2520tools%2520for%2520car%2520wrapping.%2520The%2520logo%2520is%2520clean%252C%2520simple%2520and%2520recognizable%2520with%2520tool%2520design%2520elements.%2520Suitable%2520for%2520a%2520vehicle%2520wrapping%2520tools%2520supplier.&width=60&height=60&seq=109&orientation=squarish" alt="ProWrap Tools Logo" class="w-12 h-12 rounded-full object-contain mr-4">
+            <h3 class="text-xl font-bold">ProWrap Tools</h3>
+          </div>
+          
+          <h4 class="font-bold text-lg mb-3">Herausforderung:</h4>
+          <p class="text-gray-600 mb-6">ProWrap Tools wollte seine Bekanntheit bei DIY-Enthusiasten steigern und den Online-Shop-Traffic erhöhen.</p>
+          
+          <h4 class="font-bold text-lg mb-3">Lösung:</h4>
+          <p class="text-gray-600 mb-6">Sidebar-Banner in der DIY-Sektion und gezielte Content-Banner in relevanten Tutorial-Artikeln über 6 Monate.</p>
+          
+          <h4 class="font-bold text-lg mb-3">Ergebnisse:</h4>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <i class="ri-arrow-right-up-line text-primary mr-2 mt-1"></i>
+              <span>215% mehr Traffic im Online-Shop</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-arrow-right-up-line text-primary mr-2 mt-1"></i>
+              <span>37% Steigerung der Conversion-Rate</span>
+            </li>
+            <li class="flex items-start">
+              <i class="ri-arrow-right-up-line text-primary mr-2 mt-1"></i>
+              <span>1.200+ neue Newsletter-Abonnenten</span>
+            </li>
+          </ul>
+          
+          <div class="border-t border-gray-200 pt-6">
+            <blockquote class="italic text-gray-600">
+              "Die Kampagne auf wrap & style hat unsere Erwartungen weit übertroffen. Besonders beeindruckend war die hohe Conversion-Rate der generierten Besucher."
+              <footer class="mt-2 font-medium text-gray-800">- Julia Becker, E-Commerce Managerin bei ProWrap Tools</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Das sagen unsere Kunden</h2>
+      <p class="text-gray-700 max-w-2xl mx-auto">Erfahren Sie, wie Unternehmen von unseren Werbemöglichkeiten profitieren.</p>
+    </div>
+    
+    <div class="relative">
+      <div class="testimonial-slider flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 space-x-6 scrollbar-hide">
+        <!-- Testimonial 1 -->
+        <div class="min-w-[350px] max-w-[350px] bg-white rounded-xl p-8 shadow-md snap-start">
+          <div class="flex text-yellow-400 mb-4">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <blockquote class="text-gray-700 mb-6">
+            "Die Banner-Werbung auf wrap & style hat uns geholfen, unsere Zielgruppe punktgenau zu erreichen. Die Zusammenarbeit war professionell und die Ergebnisse sprechen für sich."
+          </blockquote>
+          <div class="flex items-center">
+            <img src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520a%2520male%2520marketing%2520director%2520in%2520his%252040s%252C%2520wearing%2520business%2520attire%252C%2520with%2520a%2520confident%2520expression.%2520High-quality%2520corporate%2520photography%2520with%2520neutral%2520background.&width=60&height=60&seq=110&orientation=squarish" alt="Thomas Müller" class="w-12 h-12 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-bold">Thomas Müller</h4>
+              <p class="text-sm text-gray-600">Marketing Director, AutoStyle GmbH</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="min-w-[350px] max-w-[350px] bg-white rounded-xl p-8 shadow-md snap-start">
+          <div class="flex text-yellow-400 mb-4">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <blockquote class="text-gray-700 mb-6">
+            "Als Hersteller von Spezialwerkzeugen für die Folierung haben wir durch die Werbung auf wrap & style genau die Zielgruppe erreicht, die wir ansprechen wollten. Der ROI war beeindruckend."
+          </blockquote>
+          <div class="flex items-center">
+            <img src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520a%2520female%2520CEO%2520in%2520her%252030s%252C%2520wearing%2520business%2520attire%252C%2520with%2520a%2520friendly%2520yet%2520professional%2520expression.%2520High-quality%2520corporate%2520photography%2520with%2520neutral%2520background.&width=60&height=60&seq=111&orientation=squarish" alt="Sabine Wagner" class="w-12 h-12 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-bold">Sabine Wagner</h4>
+              <p class="text-sm text-gray-600">CEO, WrapTools Deutschland</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="min-w-[350px] max-w-[350px] bg-white rounded-xl p-8 shadow-md snap-start">
+          <div class="flex text-yellow-400 mb-4">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-half-fill"></i>
+          </div>
+          <blockquote class="text-gray-700 mb-6">
+            "Wir haben verschiedene Werbekanäle getestet, aber keiner hat uns so qualifizierte Leads gebracht wie wrap & style. Die Beratung war exzellent und die Umsetzung reibungslos."
+          </blockquote>
+          <div class="flex items-center">
+            <img src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520a%2520male%2520sales%2520manager%2520in%2520his%252030s%252C%2520wearing%2520business%2520casual%2520attire%252C%2520with%2520a%2520friendly%2520expression.%2520High-quality%2520corporate%2520photography%2520with%2520neutral%2520background.&width=60&height=60&seq=112&orientation=squarish" alt="Michael Schmidt" class="w-12 h-12 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-bold">Michael Schmidt</h4>
+              <p class="text-sm text-gray-600">Vertriebsleiter, FolienExpress</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 4 -->
+        <div class="min-w-[350px] max-w-[350px] bg-white rounded-xl p-8 shadow-md snap-start">
+          <div class="flex text-yellow-400 mb-4">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-line"></i>
+          </div>
+          <blockquote class="text-gray-700 mb-6">
+            "Als neuer Anbieter im Markt war es für uns wichtig, schnell Sichtbarkeit zu erlangen. Die Banner-Werbung auf wrap & style hat uns dabei enorm geholfen und unseren Marktstart beschleunigt."
+          </blockquote>
+          <div class="flex items-center">
+            <img src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520a%2520female%2520marketing%2520manager%2520in%2520her%252020s%252C%2520wearing%2520business%2520casual%2520attire%252C%2520with%2520a%2520friendly%2520expression.%2520High-quality%2520corporate%2520photography%2520with%2520neutral%2520background.&width=60&height=60&seq=113&orientation=squarish" alt="Lisa Hoffmann" class="w-12 h-12 rounded-full object-cover mr-4">
+            <div>
+              <h4 class="font-bold">Lisa Hoffmann</h4>
+              <p class="text-sm text-gray-600">Marketing Manager, NeoWrap</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+        <button id="prev-testimonial" class="bg-white rounded-full shadow-md p-2 hover:bg-primary hover:text-white transition-colors">
+          <i class="ri-arrow-left-s-line text-xl"></i>
+        </button>
+      </div>
+      
+      <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+        <button id="next-testimonial" class="bg-white rounded-full shadow-md p-2 hover:bg-primary hover:text-white transition-colors">
+          <i class="ri-arrow-right-s-line text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Häufig gestellte Fragen</h2>
+      <p class="text-gray-700 max-w-2xl mx-auto">Antworten auf die wichtigsten Fragen zu unseren Banner-Werbemöglichkeiten.</p>
+    </div>
+    
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-6">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-xl font-bold mb-3">Welche Zielgruppe erreiche ich mit einer Banner-Werbung?</h3>
+          <p class="text-gray-700">Mit unserer Banner-Werbung erreichen Sie sowohl professionelle Folierer als auch Endkunden, die sich für Fahrzeugfolierung interessieren. Unsere Nutzer sind überwiegend männlich (78%), zwischen 25 und 45 Jahre alt und verfügen über ein überdurchschnittliches Einkommen. Sie sind technikaffin und legen Wert auf Qualität und Individualität.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-xl font-bold mb-3">Wie wird die Performance meiner Banner gemessen?</h3>
+          <p class="text-gray-700">Wir stellen Ihnen detaillierte Auswertungen zur Verfügung, die Impressionen, Klicks, CTR (Click-Through-Rate) und, falls gewünscht, auch Conversion-Tracking umfassen. Sie erhalten regelmäßige Reports und haben jederzeit Zugriff auf ein Dashboard mit Echtzeit-Daten.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-xl font-bold mb-3">Kann ich meine Werbung auf bestimmte Bereiche der Website beschränken?</h3>
+          <p class="text-gray-700">Ja, wir bieten die Möglichkeit, Ihre Banner gezielt in bestimmten Bereichen der Website zu platzieren, z.B. nur im DIY-Bereich oder nur in der Profi-Sektion. So können Sie Ihre Zielgruppe noch präziser ansprechen und Streuverluste minimieren.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-xl font-bold mb-3">Gibt es saisonale Schwankungen bei den Besucherzahlen?</h3>
+          <p class="text-gray-700">Ja, typischerweise verzeichnen wir höhere Besucherzahlen im Frühjahr und Sommer, wenn die Folierungssaison auf Hochtouren läuft. Für Werbekampagnen in diesen Zeiträumen empfehlen wir eine frühzeitige Buchung, da die Werbeplätze schnell vergeben sind.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="text-xl font-bold mb-3">Bieten Sie auch Rabatte für Neukunden an?</h3>
+          <p class="text-gray-700">Ja, für Neukunden bieten wir einen Einführungsrabatt von 10% auf die erste Buchung an. Zudem erhalten Sie bei der ersten Buchung eine kostenlose Beratung zur optimalen Platzierung und Gestaltung Ihrer Banner.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form -->
+<section id="kontakt" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Jetzt Werbefläche anfragen</h2>
+        <p class="text-gray-700 max-w-2xl mx-auto">Füllen Sie das Formular aus und wir erstellen Ihnen ein individuelles Angebot. Unser Expertenteam berät Sie gerne zu den optimalen Werbemöglichkeiten für Ihre Ziele.</p>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-md p-8">
+        <form>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Firma *</label>
+              <input type="text" id="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Ansprechpartner *</label>
+              <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">E-Mail *</label>
+              <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Telefon *</label>
+              <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <label for="website" class="block text-sm font-medium text-gray-700 mb-2">Website</label>
+            <input type="url" id="website" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Gewünschtes Paket *</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <label class="custom-checkbox">Basic (Footer Banner)
+                <input type="radio" name="package" value="basic">
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-checkbox">Standard (Sidebar Banner)
+                <input type="radio" name="package" value="standard">
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-checkbox">Premium (Content Banner)
+                <input type="radio" name="package" value="premium">
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-checkbox">Exklusiv (Header Banner)
+                <input type="radio" name="package" value="exclusive">
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-checkbox">Kombi-Paket
+                <input type="radio" name="package" value="combo">
+                <span class="checkmark"></span>
+              </label>
+              <label class="custom-checkbox">Noch unsicher, bitte beraten Sie mich
+                <input type="radio" name="package" value="unsure" checked>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <label for="duration" class="block text-sm font-medium text-gray-700 mb-2">Gewünschte Laufzeit *</label>
+            <select id="duration" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary pr-8" required>
+              <option value="">Bitte auswählen</option>
+              <option value="1">1 Monat</option>
+              <option value="3">3 Monate (10% Rabatt)</option>
+              <option value="6">6 Monate (15% Rabatt)</option>
+              <option value="12">12 Monate (25% Rabatt)</option>
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Ihre Nachricht</label>
+            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          </div>
+          
+          <div class="mb-8">
+            <label class="custom-checkbox text-sm">
+              <input type="checkbox" required>
+              <span class="checkmark"></span>
+              <span class="ml-8">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="#" class="text-primary">Datenschutzerklärung</a> zu. *</span>
+            </label>
+          </div>
+          
+          <div class="flex justify-end">
+            <button type="submit" class="bg-primary hover:bg-primary/90 text-white py-3 px-8 !rounded-button font-medium whitespace-nowrap">Anfrage absenden</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <p class="text-gray-700 mb-4">Lieber persönlich beraten lassen?</p>
+        <div class="flex justify-center items-center">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+            <i class="ri-phone-line text-primary"></i>
+          </div>
+          <span class="text-lg font-medium">+49 (0) 89 123 456 78</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Options -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Weitere Werbemöglichkeiten</h2>
+      <p class="text-gray-700 max-w-2xl mx-auto">Entdecken Sie unsere weiteren maßgeschneiderten Werbemöglichkeiten für Ihr Unternehmen.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+          <i class="ri-article-line text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Sponsored Content</h3>
+        <p class="text-gray-600 mb-6">Veröffentlichen Sie Fachartikel und Produktvorstellungen in unserem Magazinbereich und positionieren Sie sich als Experte.</p>
+        <a href="#" class="inline-flex items-center text-primary hover:text-primary/80">
+          <span class="font-medium">Mehr erfahren</span>
+          <i class="ri-arrow-right-line ml-2"></i>
+        </a>
+      </div>
+      
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+          <i class="ri-megaphone-line text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Premium Partnerschaften</h3>
+        <p class="text-gray-600 mb-6">Profitieren Sie von exklusiven Marketingmöglichkeiten und direktem Zugang zu unserer qualifizierten Zielgruppe.</p>
+        <a href="#" class="inline-flex items-center text-primary hover:text-primary/80">
+          <span class="font-medium">Mehr erfahren</span>
+          <i class="ri-arrow-right-line ml-2"></i>
+        </a>
+      </div>
+      
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+          <i class="ri-mail-line text-primary text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Newsletter Werbung</h3>
+        <p class="text-gray-600 mb-6">Platzieren Sie Ihre Werbebotschaft in unserem monatlichen Newsletter und erreichen Sie über 15.000 Abonnenten.</p>
+        <a href="#" class="inline-flex items-center text-primary hover:text-primary/80">
+          <span class="font-medium">Mehr erfahren</span>
+          <i class="ri-arrow-right-line ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 rounded-2xl p-12 flex flex-col md:flex-row items-center justify-between relative overflow-hidden backdrop-blur-sm">
+      <div class="absolute inset-0 bg-white/40"></div>
+      <div class="relative mb-8 md:mb-0 md:mr-8 max-w-2xl">
+        <span class="inline-block text-primary font-medium mb-4">JETZT STARTEN</span>
+        <h2 class="text-3xl font-bold mb-4">Erreichen Sie Ihre Zielgruppe mit maximaler Wirkung</h2>
+        <p class="text-gray-700 mb-6">Nutzen Sie die Kraft von Deutschlands führendem Folierungsportal und dem WRAPS Magazin. Steigern Sie Ihre Markenbekanntheit und generieren Sie qualifizierte Leads.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#kontakt" class="group bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
+            Jetzt Werbefläche anfragen
+            <i class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
+          </a>
+          <a href="#" class="group border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center transition-colors">
+            Mediadaten herunterladen
+            <i class="ri-download-line ml-2"></i>
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="https://readdy.ai/api/search-image?query=A%2520professional%2520marketing%2520statistics%2520report%2520or%2520dashboard%2520showing%2520successful%2520banner%2520advertising%2520campaign%2520results.%2520The%2520image%2520displays%2520charts%252C%2520graphs%2520and%2520key%2520performance%2520indicators%2520for%2520digital%2520advertising.%2520Clean%252C%2520modern%2520business%2520graphic%2520with%2520professional%2520data%2520visualization.&width=300&height=400&seq=114&orientation=portrait" alt="Werbeerfolge" class="w-64 rounded-lg shadow-xl">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="text-2xl font-['Pacifico'] mb-4">wrap & style</div>
+        <p class="text-gray-400 mb-6">Das führende Portal und Magazin für Fahrzeugfolierung in Deutschland. Seit über 10 Jahren Ihr verlässlicher Partner in der Folierungsbranche.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-instagram-line"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-youtube-line"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Schnellzugriff</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Startseite</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Über uns</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Magazin</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Folierer finden</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Als Folierer eintragen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Rechtliches</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Impressum</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Datenschutz</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AGB</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie-Einstellungen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+        <p class="text-gray-400 mb-4">Bleiben Sie auf dem Laufenden mit den neuesten Trends und Tipps zur Fahrzeugfolierung.</p>
+        <form class="mb-4">
+          <div class="flex">
+            <input type="email" placeholder="Ihre E-Mail-Adresse" class="flex-grow px-4 py-2 rounded-l-md border-none focus:outline-none text-gray-900">
+            <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-md whitespace-nowrap">Anmelden</button>
+          </div>
+        </form>
+        <a href="#" class="flex items-center text-gray-400 hover:text-white transition-colors">
+          <i class="ri-book-open-line mr-2"></i>
+          <span>Magazin digital lesen</span>
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 WNP Medien GmbH. Alle Rechte vorbehalten.</p>
+        <div class="flex space-x-6">
+          <i class="ri-visa-line text-gray-400 text-2xl"></i>
+          <i class="ri-mastercard-line text-gray-400 text-2xl"></i>
+          <i class="ri-paypal-line text-gray-400 text-2xl"></i>
+          <i class="ri-amazon-pay-line text-gray-400 text-2xl"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script id="visitor-chart-script">
+document.addEventListener('DOMContentLoaded', function() {
+  const visitorChart = document.getElementById('visitor-chart');
+  if (visitorChart) {
+    const chart = echarts.init(visitorChart);
+    const option = {
+      animation: false,
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        textStyle: {
+          color: '#1f2937'
+        }
+      },
+      legend: {
+        top: '0%',
+        left: 'center',
+        textStyle: {
+          color: '#1f2937'
+        }
+      },
+      series: [
+        {
+          name: 'Besucherstruktur',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+          },
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '18',
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 42, name: 'Professionelle Folierer', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
+            { value: 28, name: 'DIY-Enthusiasten', itemStyle: { color: 'rgba(141, 211, 199, 1)' } },
+            { value: 18, name: 'Fahrzeugbesitzer', itemStyle: { color: 'rgba(251, 191, 114, 1)' } },
+            { value: 12, name: 'Händler & Hersteller', itemStyle: { color: 'rgba(252, 141, 98, 1)' } }
+          ]
+        }
+      ]
+    };
+    chart.setOption(option);
+    
+    window.addEventListener('resize', function() {
+      chart.resize();
+    });
+  }
+});
+</script>
+
+<script id="testimonial-slider-script">
+document.addEventListener('DOMContentLoaded', function() {
+  const slider = document.querySelector('.testimonial-slider');
+  const prevButton = document.getElementById('prev-testimonial');
+  const nextButton = document.getElementById('next-testimonial');
+  
+  if (slider && prevButton && nextButton) {
+    const slideWidth = 350 + 24; // slide width + gap
+    
+    prevButton.addEventListener('click', function() {
+      slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+    });
+    
+    nextButton.addEventListener('click', function() {
+      slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+    });
+  }
+});
+</script>
+
+<script id="header-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('header');
+  // Header is already white, no need to change on scroll
+});
+</script>
+</body>
+</html>
