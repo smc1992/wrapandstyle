@@ -23,13 +23,30 @@ const createSupabaseMiddlewareClient = (request: NextRequest, response: NextResp
 };
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Allow access to the site login page itself and API routes
+  if (pathname.startsWith('/site-login') || pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+
+  // Check for the site access cookie
+  const hasAccess = request.cookies.get('site-access-granted')?.value === 'true';
+  const sitePassword = process.env.SITE_PASSWORD;
+
+  // If a site password is set and the user doesn't have access, redirect to login
+  if (sitePassword && !hasAccess) {
+    const url = new URL('/site-login', request.url);
+    url.searchParams.set('next', pathname + request.nextUrl.search);
+    return NextResponse.redirect(url);
+  }
+
   const response = NextResponse.next({
     request: { headers: request.headers },
   });
 
   const supabase = createSupabaseMiddlewareClient(request, response);
   const { data: { user } } = await supabase.auth.getUser();
-  const { pathname } = request.nextUrl;
 
   // Define admin-only paths that require a 'superadmin' role
   const adminPaths = ['/dashboard/admin', '/dashboard/team'];
