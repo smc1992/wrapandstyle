@@ -15,15 +15,8 @@ import PortfolioGallery from '@/components/ui/portfolio-gallery';
 import InteractiveMap from '@/components/ui/interactive-map';
 import { VideoPlayer } from '@/components/ui/video-player';
 
-// Define the types for the props
-interface FoliererPublicProfilePageProps {
-  params: {
-    slug: string;
-  };
-}
-
 // This function generates the page for a single folierer based on their slug
-export default async function FoliererPublicProfilePage({ params }: FoliererPublicProfilePageProps) {
+export default async function FoliererPublicProfilePage({ params }: { params: { slug: string } }) {
   const supabase = await createClient();
 
   const { data: { user } } = await supabase.auth.getUser();
