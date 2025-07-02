@@ -23,7 +23,7 @@ interface FoliererPublicProfilePageProps {
 }
 
 // This function generates the page for a single folierer based on their slug
-export default async function FoliererPublicProfilePage({ params: { slug } }: FoliererPublicProfilePageProps) {
+export default async function FoliererPublicProfilePage({ params }: FoliererPublicProfilePageProps) {
   const supabase = await createClient();
 
   const { data: { user } } = await supabase.auth.getUser();
@@ -32,7 +32,7 @@ export default async function FoliererPublicProfilePage({ params: { slug } }: Fo
   const { data, error: profileError } = await supabase
     .from('folierer')
     .select('*, mission_statement, vision_statement, company_history')
-    .eq('slug', slug)
+    .eq('slug', params.slug)
     .single();
 
   // If no profile is found or there's an error, show a 404 page
