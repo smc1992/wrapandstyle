@@ -21,10 +21,10 @@ export type {
   FeaturedMedia,
 };
 
-const baseUrl = process.env.WORDPRESS_URL;
+const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
 if (!baseUrl) {
-  throw new Error("WORDPRESS_URL environment variable is not defined");
+  throw new Error("NEXT_PUBLIC_WORDPRESS_API_URL environment variable is not defined");
 }
 
 function getUrl(path: string, query?: Record<string, any>) {
@@ -130,9 +130,9 @@ export interface TeamMember {
 
 // Function to fetch all team members
 export async function getAllTeamMembers(): Promise<TeamMember[]> {
-  const API_URL = process.env.WORDPRESS_URL;
+  const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
   if (!API_URL) {
-    throw new Error('WORDPRESS_URL environment variable is not set.');
+    throw new Error('NEXT_PUBLIC_WORDPRESS_API_URL environment variable is not set.');
   }
 
   try {
