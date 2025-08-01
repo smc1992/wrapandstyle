@@ -1,7 +1,5 @@
 'use server';
 
-'use server';
-
 import { createAdminClient, createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';

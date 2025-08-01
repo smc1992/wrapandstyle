@@ -15,7 +15,7 @@ export function CreateHaendlerForm() {
       <div className="border-b border-gray-900/10 pb-8">
         <h2 className="text-xl font-semibold leading-7 text-gray-900">Händler anlegen</h2>
         <p className="mt-1 text-sm leading-6 text-gray-600">
-          Füllen Sie die Details aus, um einen neuen Benutzer mit der Rolle 'Händler' zu erstellen.
+          Füllen Sie die Details aus, um einen neuen Benutzer mit der Rolle &apos;Händler&apos; zu erstellen.
         </p>
       </div>
 
