@@ -80,7 +80,7 @@ export function CreateFoliererForm() {
       </div>
 
       <div className="mt-8 flex items-center justify-end gap-x-6">
-        <SubmitButton text='Folierer erstellen' />
+        <SubmitButton text="Folierer erstellen" />
       </div>
 
       {state.message && (

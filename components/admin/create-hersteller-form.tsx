@@ -76,7 +76,7 @@ export function CreateHerstellerForm() {
       </div>
 
       <div className="mt-8 flex items-center justify-end gap-x-6">
-        <SubmitButton text='Hersteller erstellen' />
+        <SubmitButton text="Hersteller erstellen" />
       </div>
 
       {state.message && (

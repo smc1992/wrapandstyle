@@ -70,7 +70,7 @@ export function CreateHaendlerForm() {
       </div>
 
       <div className="mt-8 flex items-center justify-end gap-x-6">
-        <SubmitButton text='Händler erstellen' />
+        <SubmitButton text="Händler erstellen" />
       </div>
 
       {state.message && (

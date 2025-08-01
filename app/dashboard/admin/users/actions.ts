@@ -323,3 +323,43 @@ export async function deleteUser(previousState: ActionState, formData: FormData)
     return { message: errorMessage, type: 'error' };
   }
 }
+
+// --- SERVER ACTION: resetUserPassword ---
+export async function resetUserPassword(prevState: any, formData: FormData) {
+  const email = formData.get('email') as string;
+  
+  if (!email) {
+    return {
+      success: false,
+      error: 'E-Mail-Adresse ist erforderlich',
+      message: null,
+    };
+  }
+
+  try {
+    const supabase = createAdminClient();
+    
+    // Verwende die korrekte Supabase API-Methode für Passwort-Reset
+    const { error } = await supabase.auth.resetPasswordForEmail(email);
+    
+    if (error) {
+      return {
+        success: false,
+        error: `Fehler beim Zurücksetzen des Passworts: ${error.message}`,
+        message: null,
+      };
+    }
+    
+    return {
+      success: true,
+      error: null,
+      message: `Passwort-Reset-Link wurde an ${email} gesendet.`,
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: `Ein unerwarteter Fehler ist aufgetreten: ${error.message}`,
+      message: null,
+    };
+  }
+}
