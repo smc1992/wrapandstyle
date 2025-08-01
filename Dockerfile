@@ -9,7 +9,7 @@ COPY . .
 WORKDIR /app/next-wp
 
 # Installiere Abhängigkeiten
-RUN npm ci
+RUN npm install
 
 # Baue die Next.js-Anwendung
 RUN npm run build
