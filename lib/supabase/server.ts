@@ -46,3 +46,17 @@ export function createAdminClient() {
     }
   );
 }
+
+// For public data access without cookies (static generation compatible)
+export function createPublicClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    }
+  );
+}

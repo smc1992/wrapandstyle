@@ -1,6 +1,7 @@
 import { FilterSidebar } from './directory/filter-sidebar';
 import { FoliererGrid } from './directory/folierer-grid';
 import { getFoliererProfiles } from '@/app/(main)/folierer/actions';
+import { Suspense } from 'react';
 
 // Define props to accept searchParams, which will be passed from the page
 export async function DirectorySection() {
@@ -23,7 +24,9 @@ export async function DirectorySection() {
               The sidebar will use these to initialize its state (e.g., location input).
               For Folierer, we don't pass brands or categories, the sidebar should handle this gracefully.
             */}
-            <FilterSidebar />
+            <Suspense fallback={<div className="p-4 border rounded-md animate-pulse bg-gray-100 dark:bg-gray-800">Filter werden geladen...</div>}>
+              <FilterSidebar />
+            </Suspense>
           </div>
           <div className="lg:col-span-2">
             <FoliererGrid profiles={foliererProfiles} />

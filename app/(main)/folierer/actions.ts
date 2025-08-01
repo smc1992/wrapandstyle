@@ -1,6 +1,6 @@
 'use server';
 
-import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/server';
 import type { FoliererProfileCard } from '@/lib/types';
 
 /**
@@ -9,8 +9,8 @@ import type { FoliererProfileCard } from '@/lib/types';
  */
 export async function getFoliererProfiles(): Promise<FoliererProfileCard[]> {
   try {
-    // The lint error indicates createClient is async. Await it.
-    const supabase = await createClient();
+    // Verwende createPublicClient für statische Generierung (ohne cookies)
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from('folierer')
@@ -45,7 +45,7 @@ export async function getFoliererProfiles(): Promise<FoliererProfileCard[]> {
         logo_url: item.logo_url,
         services: item.folierer_services?.map((s: any) => s.title) ?? [],
       }))
-      .filter((profile): profile is FoliererProfileCard => !!profile.firma);
+      .filter((profile: any): profile is FoliererProfileCard => !!profile.firma);
 
     return profiles;
   } catch (err: any) {
