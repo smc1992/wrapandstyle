@@ -102,14 +102,10 @@ export async function updateLogoUrl(newLogoUrl: string) {
 // Schema for validating the uploaded image
 const imageSchema = z.object({
   title: z.string().min(1, 'Titel ist erforderlich.'),
-  image: z
-    .instanceof(File, { message: 'Bild ist erforderlich.' })
-    .refine((file) => file.size > 0, 'Bild ist erforderlich.')
-    .refine((file) => file.size <= 5 * 1024 * 1024, `Bild darf maximal 5MB groß sein.`)
-    .refine(
-      (file) => ['image/jpeg', 'image/png', 'image/webp'].includes(file.type),
-      'Nur .jpeg, .png und .webp Formate sind erlaubt.'
-    ),
+  // Einfachere Validierung ohne File-API für Edge Runtime-Kompatibilität
+  image: z.any()
+    .refine((file) => file !== null && file !== undefined, 'Bild ist erforderlich.')
+    // Weitere Validierungen werden im addPortfolioImage durchgeführt
 });
 
 // New, robust function to add a portfolio image
