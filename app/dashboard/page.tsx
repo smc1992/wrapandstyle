@@ -91,20 +91,16 @@ export default async function DashboardPage() {
 
   // Redirect based on the role.
   console.log(
-    `DashboardPage: User ${user.id} has role: "${userRole}". Redirecting...`
+    `DashboardPage: User ${user.id} has role: "${userRole}". Redirecting from /dashboard...`
   );
-
+  // Redirect to the role-specific dashboard
   if (userRole === 'superadmin') {
     return redirect('/dashboard/admin');
   }
-  if (userRole === 'folierer') {
-    return redirect('/dashboard/folierer');
-  }
-  if (userRole === 'hersteller') {
-    return redirect('/dashboard/hersteller');
-  }
-  if (userRole === 'haendler') {
-    return redirect('/dashboard/haendler');
+
+  const validRoles = ['folierer', 'hersteller', 'haendler'];
+  if (validRoles.includes(userRole)) {
+    return redirect(`/dashboard/${userRole}`);
   }
 
   // Fallback for any other roles that might not have a specific dashboard yet

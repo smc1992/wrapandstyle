@@ -5,7 +5,8 @@ import { useFormStatus } from 'react-dom'
 import { updateFoliererProfile } from '@/app/dashboard/folierer/actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 import { Label } from '@/components/ui/label';
 import React, { useState, useEffect as useReactEffect } from 'react'; // Renamed to avoid conflict if useActionState imports its own useEffect
 import {
@@ -21,6 +22,7 @@ import { useToast } from "@/hooks/use-toast" // Shadcn toast
 // Define a type for the profile data passed as props
 // Define a type for the profile data passed as props, matching the new DB structure
 interface FoliererProfile {
+  logo_url: string | null;
   firma: string | null;
   ansprechpartner: string | null;
   webseite: string | null;
@@ -79,6 +81,7 @@ export function FoliererEditForm({ profile, userId }: FoliererEditFormProps) {
 
   const [state, formAction] = useActionState(updateFoliererProfile.bind(null, userId), initialState)
   const { toast } = useToast()
+  const [logoPreview, setLogoPreview] = useState<string | null>(profile.logo_url);
 
   useEffect(() => {
     if (state?.message) {
@@ -246,6 +249,46 @@ export function FoliererEditForm({ profile, userId }: FoliererEditFormProps) {
             {state?.errors?.video_url && <p className="text-sm text-red-500 mt-1">{state.errors.video_url.join(', ')}</p>}
             <p className="text-sm text-muted-foreground mt-1">
               Fügen Sie hier den Link zu Ihrem Imagevideo ein (z.B. von YouTube oder Vimeo).
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Firmenlogo</CardTitle>
+          <CardDescription>Laden Sie hier Ihr Firmenlogo hoch. Es wird auf Ihrer öffentlichen Profilseite angezeigt.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {logoPreview && (
+            <div className="mt-4">
+              <p className="text-sm font-medium text-gray-700 mb-2">Aktuelles Logo:</p>
+              <Image src={logoPreview} alt="Logo Vorschau" width={96} height={96} className="h-24 w-24 object-cover rounded-md border p-2" />
+            </div>
+          )}
+          <div>
+            <Label htmlFor="logo">Neues Logo hochladen</Label>
+            <Input 
+              id="logo" 
+              name="logo" 
+              type="file" 
+              accept="image/png, image/jpeg, image/webp" 
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    setLogoPreview(reader.result as string);
+                  };
+                  reader.readAsDataURL(file);
+                } else {
+                  setLogoPreview(profile.logo_url);
+                }
+              }}
+            />
+            {state?.errors?.logo && <p className="text-sm text-red-500 mt-1">{state.errors.logo.join(', ')}</p>}
+            <p className="text-sm text-muted-foreground mt-1">
+              Max. 5MB. Empfohlene Formate: PNG, JPG, WEBP.
             </p>
           </div>
         </CardContent>

@@ -33,11 +33,11 @@ const partners = [
 
 export function BenefitsSection() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 dark:bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold">Ihre Vorteile auf einen Blick</h2>
-          <p className="text-lg text-gray-600 mt-4">Die zentrale Anlaufstelle für Fahrzeugfolierung in Deutschland.</p>
+          <h2 className="text-4xl font-bold dark:text-white">Ihre Vorteile auf einen Blick</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">Die zentrale Anlaufstelle für Fahrzeugfolierung in Deutschland.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 text-center">
           {benefits.map((benefit, index) => (
@@ -47,7 +47,7 @@ export function BenefitsSection() {
                 <CardTitle className="mt-4">{benefit.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">{benefit.description}</p>
+                <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
               </CardContent>
             </Card>
           ))}

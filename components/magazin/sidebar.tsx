@@ -8,8 +8,8 @@ export function Sidebar({ categories }: { categories: Category[] }) {
 
   return (
     <aside className="lg:w-1/3 space-y-8">
-      <div className="bg-white rounded-xl shadow-md p-6">
-        <h3 className="text-xl font-bold mb-4">Beliebte Themen</h3>
+      <div className="bg-white dark:bg-background rounded-xl shadow-md p-6">
+        <h3 className="text-xl font-bold mb-4 dark:text-white">Beliebte Themen</h3>
         <div className="space-y-4">
           {popularCategories.map((category) => (
             <Link
@@ -21,7 +21,7 @@ export function Sidebar({ categories }: { categories: Category[] }) {
                 <h4 className="font-medium group-hover:text-primary transition-colors">
                   {category.name}
                 </h4>
-                <p className="text-sm text-gray-500">{category.count} Artikel</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{category.count} Artikel</p>
               </div>
             </Link>
           ))}

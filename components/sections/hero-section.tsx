@@ -23,11 +23,11 @@ export function HeroSection() {
             Vernetzen Sie sich mit qualifizierten Kunden, präsentieren Sie Ihre Arbeit und profitieren Sie von 10 Jahren Branchenexpertise.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="#folierer-finden" className="group bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
+            <Link href="#verzeichnis" className="group bg-primary hover:bg-primary/90 text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
               Jetzt Folierer werden
               <i className="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
             </Link>
-            <Link href="#eintragen" className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
+            <Link href="#ueber-uns" className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white py-3 px-6 !rounded-button font-medium whitespace-nowrap flex items-center">
               Mehr erfahren
               <i className="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"></i>
             </Link>

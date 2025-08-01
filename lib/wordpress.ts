@@ -1,305 +1,277 @@
-// Description: WordPress API functions
-// Used to fetch data from a WordPress site using the WordPress REST API
-// Types are imported from `wp.d.ts`
+import queryString from 'query-string';
 
-import querystring from "query-string";
-import type {
-  Post,
-  Category,
-  Tag,
-  Page,
-  Author,
-  FeaturedMedia,
-} from "./wordpress.d";
+// --- TYPE DEFINITIONS ---
 
-export type {
-  Post,
-  Category,
-  Tag,
-  Page,
-  Author,
-  FeaturedMedia,
-};
+export interface Tag {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  slug: string;
+  taxonomy: string;
+  meta: any[];
+  _links: any;
+}
 
-const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+export interface Category {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  slug: string;
+  taxonomy: string;
+  parent: number;
+  meta: any[];
+  _links: any;
+}
 
-if (!baseUrl) {
+export interface Author {
+  id: number;
+  name: string;
+  url: string;
+  description: string;
+  link: string;
+  slug: string;
+  avatar_urls: {
+    [key: string]: string;
+  };
+}
+
+export interface FeaturedMedia {
+  id: number;
+  source_url: string;
+  alt_text: string;
+  media_details: {
+    width: number;
+    height: number;
+  };
+}
+
+export interface Post {
+  id: number;
+  date: string;
+  date_gmt: string;
+  guid: {
+    rendered: string;
+  };
+  modified: string;
+  modified_gmt: string;
+  slug: string;
+  status: string;
+  type: string;
+  link: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+    protected: boolean;
+  };
+  excerpt: {
+    rendered: string;
+    protected: boolean;
+  };
+  author: number;
+  featured_media: number;
+  comment_status: string;
+  ping_status: string;
+  sticky: boolean;
+  template: string;
+  format: string;
+  meta: any[];
+  categories: number[];
+  tags: number[];
+  rank_math_head?: string;
+  jetpack_featured_media_url?: string;
+  _embedded?: {
+    author?: Author[];
+    'wp:featuredmedia'?: FeaturedMedia[];
+    'wp:term'?: (Category | Tag)[][];
+  };
+}
+
+export interface Page {
+  id: number;
+  slug: string;
+  title: { rendered: string };
+  content: { rendered: string };
+  excerpt?: {
+    rendered: string;
+  };
+  link: string;
+  rank_math_head?: string;
+  rank_math_seo?: {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    og_title?: string;
+    og_description?: string;
+    og_image?: any;
+    og_url?: string;
+    og_type?: string;
+    twitter_card_type?: string;
+    twitter_title?: string;
+    twitter_description?: string;
+    twitter_image?: any;
+  };
+}
+
+export interface RankMathHead {
+  title: string;
+  description: string;
+  canonical: string;
+  // Add other RankMath properties as needed
+}
+
+export interface TeamMember {
+  // Add TeamMember properties as needed
+}
+
+export interface Haendler {
+  // Add Haendler properties as needed
+}
+
+// --- API HELPER FUNCTIONS ---
+
+const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+
+if (!API_URL) {
   throw new Error("NEXT_PUBLIC_WORDPRESS_API_URL environment variable is not defined");
 }
 
-function getUrl(path: string, query?: Record<string, any>) {
-  const params = query ? querystring.stringify(query) : null;
-  return `${baseUrl}${path}${params ? `?${params}` : ""}`;
-}
+// Generic result type for all fetch operations
+export type WordPressApiResult<T> = {
+  data: T | null;
+  error: string | null;
+  headers?: Headers;
+};
 
-class WordPressAPIError extends Error {
-  constructor(message: string, public status: number, public endpoint: string) {
-    super(message);
-    this.name = "WordPressAPIError";
-  }
-}
-
-async function wordpressFetch<T>(url: string): Promise<T> {
-  const userAgent = "Next.js WordPress Client";
-
-  const response = await fetch(url, {
-    headers: {
-      "User-Agent": userAgent,
-    },
-    cache: 'no-store',
-  });
-
-  if (!response.ok) {
-    throw new WordPressAPIError(
-      `WordPress API request failed: ${response.statusText}`,
-      response.status,
-      url
-    );
-  }
-
-  return response.json();
-}
-
-export async function getAllPosts(filterParams?: {
-  author?: string;
-  tag?: string;
-  category?: string;
-  search?: string;
-}): Promise<Post[]> {
-  const query: Record<string, any> = {
-    _embed: true,
-    per_page: 100,
-  };
-
-  if (filterParams?.search) {
-    query.search = filterParams.search;
-  }
-
-  if (filterParams?.author) {
-    query.author = filterParams.author;
-  }
-
-  if (filterParams?.tag) {
-    query.tags = filterParams.tag;
-  }
-
-  if (filterParams?.category) {
-    query.categories = filterParams.category;
-  }
-
-  const url = getUrl("/wp-json/wp/v2/posts", query);
-  return wordpressFetch<Post[]>(url);
-}
-
-export async function getPostById(id: number): Promise<Post> {
-  const url = getUrl(`/wp-json/wp/v2/posts/${id}`);
-  return wordpressFetch<Post>(url);
-}
-
-export async function getPostBySlug(slug: string): Promise<Post> {
-  const url = getUrl("/wp-json/wp/v2/posts", { slug });
-  const response = await wordpressFetch<Post[]>(url);
-  return response[0];
-}
-
-
-
-// Interface for the Team Member Custom Post Type
-export interface TeamMember {
-  id: number;
-  title: {
-    rendered: string; // Name of the team member
-  };
-  content: {
-    rendered: string; // Biography/description
-  };
-  _embedded: {
-    'wp:featuredmedia'?: {
-      source_url: string;
-      alt_text: string;
-    }[];
-  };
-  acf: {
-    position?: string;
-    linkedin_url?: string;
-    twitter_url?: string;
-    instagram_url?: string;
-    facebook_url?: string;
-  };
-}
-
-// Function to fetch all team members
-export async function getAllTeamMembers(): Promise<TeamMember[]> {
-  const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-  if (!API_URL) {
-    throw new Error('NEXT_PUBLIC_WORDPRESS_API_URL environment variable is not set.');
-  }
+async function wordpressFetch<T>(endpoint: string, options: RequestInit = {}): Promise<WordPressApiResult<T>> {
+  const url = `${API_URL}${endpoint}`;
+  const userAgent = "WNP-Magazin Next.js Client";
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 30000); // 30-second timeout
 
   try {
-    // The endpoint for the 'team' custom post type. _embed fetches linked data like featured images.
-    const teamResponse = await fetch(`${API_URL}/wp-json/wp/v2/team?_embed`);
-    if (!teamResponse.ok) {
-      // If the endpoint doesn't exist (e.g., CPT not set up), return empty array gracefully.
-      if (teamResponse.status === 404) {
-        console.warn('Team members endpoint not found (404). Please ensure the Custom Post Type is set up correctly in WordPress.');
-        return [];
-      }
-      throw new Error(`Failed to fetch team members: ${teamResponse.statusText}`);
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': userAgent,
+        ...options.headers,
+      },
+      signal: controller.signal,
+      next: { revalidate: 3600 }, // Revalidate every hour
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error(`WordPress API Error: ${response.status} ${response.statusText}`, { url, body: errorBody });
+      return { data: null, error: `API request failed with status ${response.status}.` };
     }
-    const teamMembers: TeamMember[] = await teamResponse.json();
-    return teamMembers;
-  } catch (error) {
-    console.error('Error fetching team members:', error);
-    return []; // Return empty array on error to prevent site crash
+
+    const data: T = await response.json();
+    return { data, error: null, headers: response.headers };
+
+  } catch (error: any) {
+    clearTimeout(timeoutId);
+    console.error(`[wordpressFetch] Network Error for URL: ${url}`, error);
+    if (error.name === 'AbortError') {
+      return { data: null, error: 'Connection to the content server timed out.' };
+    }
+    return { data: null, error: `A network error occurred: ${error.message}` };
   }
 }
 
-export async function getAllCategories(): Promise<Category[]> {
-  // We use hide_empty=true to only fetch categories that have at least one post.
-  const url = getUrl("/wp-json/wp/v2/categories", { hide_empty: true });
-  return wordpressFetch<Category[]>(url);
+// --- DATA FETCHING FUNCTIONS ---
+
+export async function getRecentPosts(count: number = 5): Promise<WordPressApiResult<Post[]>> {
+  const params = {
+    per_page: count,
+    orderby: 'date',
+    order: 'desc',
+    _embed: true,
+  };
+  const query = queryString.stringify(params);
+  return wordpressFetch<Post[]>(`/wp-json/wp/v2/posts?${query}`);
 }
 
-export async function getCategoryById(id: number): Promise<Category> {
-  const url = getUrl(`/wp-json/wp/v2/categories/${id}`);
-  return wordpressFetch<Category>(url);
+export async function getAllPosts(params: Record<string, any> = {}): Promise<WordPressApiResult<Post[]>> {
+  const defaultParams = { _embed: true, per_page: 100 };
+  const query = queryString.stringify({ ...defaultParams, ...params });
+  return wordpressFetch<Post[]>(`/wp-json/wp/v2/posts?${query}`);
 }
 
-export async function getCategoryBySlug(slug: string): Promise<Category> {
-  const url = getUrl("/wp-json/wp/v2/categories", { slug });
-  const response = await wordpressFetch<Category[]>(url);
-  return response[0];
+export async function getPostBySlug(slug: string): Promise<WordPressApiResult<Post | null>> {
+  const query = queryString.stringify({ slug, _embed: true });
+  const result = await wordpressFetch<Post[]>(`/wp-json/wp/v2/posts?${query}`);
+  if (result.error || !result.data || result.data.length === 0) {
+    return { data: null, error: result.error || 'Post not found.' };
+  }
+  return { data: result.data[0], error: null };
 }
 
-export async function getPostsByCategory(categoryId: number): Promise<Post[]> {
-  const url = getUrl("/wp-json/wp/v2/posts", { categories: categoryId });
-  return wordpressFetch<Post[]>(url);
+export async function getAllCategories(): Promise<WordPressApiResult<Category[]>> {
+  const query = queryString.stringify({ per_page: 100, hide_empty: true });
+  return wordpressFetch<Category[]>(`/wp-json/wp/v2/categories?${query}`);
 }
 
-export async function getRelatedPosts(categoryId: number, currentPostId: number): Promise<Post[]> {
-  const url = getUrl("/wp-json/wp/v2/posts", {
-    categories: categoryId,
-    per_page: 4, // Fetch 3 related posts + the current one which we'll filter out
-    exclude: currentPostId,
-    _embed: true, // Embed related data like featured image
+export async function getAllTags(): Promise<WordPressApiResult<Tag[]>> {
+  const query = queryString.stringify({ per_page: 100, hide_empty: true });
+  return wordpressFetch<Tag[]>(`/wp-json/wp/v2/tags?${query}`);
+}
+
+export async function getAllAuthors(): Promise<WordPressApiResult<Author[]>> {
+  const query = queryString.stringify({ per_page: 100 });
+  return wordpressFetch<Author[]>(`/wp-json/wp/v2/users?${query}`);
+}
+
+export async function getPageBySlug(slug: string): Promise<WordPressApiResult<Page | null>> {
+  const query = queryString.stringify({ slug, _embed: true });
+  const result = await wordpressFetch<Page[]>(`/wp-json/wp/v2/pages?${query}`);
+  if (result.error || !result.data || result.data.length === 0) {
+    return { data: null, error: result.error || 'Page not found.' };
+  }
+  return { data: result.data[0], error: null };
+}
+
+export async function getFeaturedMediaById(id: number): Promise<WordPressApiResult<FeaturedMedia>> {
+  return wordpressFetch<FeaturedMedia>(`/wp-json/wp/v2/media/${id}`);
+}
+
+export async function getRankMathHead(url: string): Promise<WordPressApiResult<RankMathHead>> {
+  const fullUrl = `/wp-json/rankmath/v1/getHead?url=${encodeURIComponent(url)}`;
+  return wordpressFetch<RankMathHead>(fullUrl);
+}
+
+export async function getAuthorById(id: number): Promise<WordPressApiResult<Author>> {
+  return wordpressFetch<Author>(`/wp-json/wp/v2/users/${id}`);
+}
+
+export async function getCategoryById(id: number): Promise<WordPressApiResult<Category>> {
+  return wordpressFetch<Category>(`/wp-json/wp/v2/categories/${id}`);
+}
+
+export async function getAllPages(params: Record<string, any> = {}): Promise<WordPressApiResult<Page[]>> {
+  const defaultParams = { _embed: true, per_page: 100 };
+  const query = queryString.stringify({ ...defaultParams, ...params });
+  return wordpressFetch<Page[]>(`/wp-json/wp/v2/pages?${query}`);
+}
+
+export async function getRelatedPosts({ postId, categoryIds, limit = 3 }: { postId: number; categoryIds: number[]; limit?: number; }): Promise<WordPressApiResult<Post[]>> {
+  if (!categoryIds || categoryIds.length === 0) {
+    return { data: [], error: null };
+  }
+  const query = queryString.stringify({
+    categories: categoryIds.join(','),
+    exclude: postId,
+    per_page: limit,
+    _embed: true,
   });
-  const posts = await wordpressFetch<Post[]>(url);
-  // Ensure the current post is not in the related posts list and limit to 3
-  return posts.filter(post => post.id !== currentPostId).slice(0, 3);
+  return wordpressFetch<Post[]>(`/wp-json/wp/v2/posts?${query}`);
 }
 
-export async function getPostsByTag(tagId: number): Promise<Post[]> {
-  const url = getUrl("/wp-json/wp/v2/posts", { tags: tagId });
-  return wordpressFetch<Post[]>(url);
-}
-
-export async function getTagsByPost(postId: number): Promise<Tag[]> {
-  const url = getUrl("/wp-json/wp/v2/tags", { post: postId });
-  return wordpressFetch<Tag[]>(url);
-}
-
-export async function getAllTags(): Promise<Tag[]> {
-  const url = getUrl("/wp-json/wp/v2/tags");
-  return wordpressFetch<Tag[]>(url);
-}
-
-export async function getTagById(id: number): Promise<Tag> {
-  const url = getUrl(`/wp-json/wp/v2/tags/${id}`);
-  return wordpressFetch<Tag>(url);
-}
-
-export async function getTagBySlug(slug: string): Promise<Tag> {
-  const url = getUrl("/wp-json/wp/v2/tags", { slug });
-  const response = await wordpressFetch<Tag[]>(url);
-  return response[0];
-}
-
-export async function getAllPages(): Promise<Page[]> {
-  const url = getUrl("/wp-json/wp/v2/pages");
-  return wordpressFetch<Page[]>(url);
-}
-
-export async function getPageById(id: number): Promise<Page> {
-  const url = getUrl(`/wp-json/wp/v2/pages/${id}`);
-  return wordpressFetch<Page>(url);
-}
-
-export async function getPageBySlug(slug: string): Promise<Page> {
-  const url = getUrl("/wp-json/wp/v2/pages", { slug });
-  const response = await wordpressFetch<Page[]>(url);
-  return response[0];
-}
-
-export async function getAllAuthors(): Promise<Author[]> {
-  const url = getUrl("/wp-json/wp/v2/users");
-  return wordpressFetch<Author[]>(url);
-}
-
-export async function getAuthorById(id: number): Promise<Author> {
-  const url = getUrl(`/wp-json/wp/v2/users/${id}`);
-  return wordpressFetch<Author>(url);
-}
-
-export async function getAuthorBySlug(slug: string): Promise<Author> {
-  const url = getUrl("/wp-json/wp/v2/users", { slug });
-  const response = await wordpressFetch<Author[]>(url);
-  return response[0];
-}
-
-export async function getPostsByAuthor(authorId: number): Promise<Post[]> {
-  const url = getUrl("/wp-json/wp/v2/posts", { author: authorId });
-  return wordpressFetch<Post[]>(url);
-}
-
-export async function getPostsByAuthorSlug(
-  authorSlug: string
-): Promise<Post[]> {
-  const author = await getAuthorBySlug(authorSlug);
-  const url = getUrl("/wp-json/wp/v2/posts", { author: author.id });
-  return wordpressFetch<Post[]>(url);
-}
-
-export async function getPostsByCategorySlug(
-  categorySlug: string
-): Promise<Post[]> {
-  const category = await getCategoryBySlug(categorySlug);
-  const url = getUrl("/wp-json/wp/v2/posts", { categories: category.id });
-  return wordpressFetch<Post[]>(url);
-}
-
-export async function getPostsByTagSlug(tagSlug: string): Promise<Post[]> {
-  const tag = await getTagBySlug(tagSlug);
-  const url = getUrl("/wp-json/wp/v2/posts", { tags: tag.id });
-  return wordpressFetch<Post[]>(url);
-}
-
-export async function getFeaturedMediaById(id: number): Promise<FeaturedMedia> {
-  const url = getUrl(`/wp-json/wp/v2/media/${id}`);
-  return wordpressFetch<FeaturedMedia>(url);
-}
-
-export async function searchCategories(query: string): Promise<Category[]> {
-  const url = getUrl("/wp-json/wp/v2/categories", {
-    search: query,
-    per_page: 100,
-  });
-  return wordpressFetch<Category[]>(url);
-}
-
-export async function searchTags(query: string): Promise<Tag[]> {
-  const url = getUrl("/wp-json/wp/v2/tags", {
-    search: query,
-    per_page: 100,
-  });
-  return wordpressFetch<Tag[]>(url);
-}
-
-export async function searchAuthors(query: string): Promise<Author[]> {
-  const url = getUrl("/wp-json/wp/v2/users", {
-    search: query,
-    per_page: 100,
-  });
-  return wordpressFetch<Author[]>(url);
-}
-
-export { WordPressAPIError };

@@ -46,7 +46,7 @@ export function LogoUploader({ userId, initialLogoUrl }: LogoUploaderProps) {
     const filePath = `${userId}/${randomName}.${fileExt}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('logos')
+      .from('logos-folierer')
       .upload(filePath, file, { upsert: true });
 
     if (uploadError) {
@@ -58,7 +58,7 @@ export function LogoUploader({ userId, initialLogoUrl }: LogoUploaderProps) {
     }
 
     const { data: { publicUrl } } = supabase.storage
-      .from('logos')
+      .from('logos-folierer')
       .getPublicUrl(filePath);
 
     if (!publicUrl) {

@@ -115,6 +115,74 @@ export interface Category extends Taxonomy {
   parent: number;
 }
 
+// --- Custom Taxonomies for Haendler ---
+export interface Brand extends Taxonomy {
+  taxonomy: "brand";
+  parent: number;
+}
+
+export interface ProductCategory extends Taxonomy {
+  taxonomy: "product_category";
+  parent: number;
+}
+
+// Interface for the Team Member Custom Post Type
+export interface TeamMember {
+  id: number;
+  slug: string;
+  title: {
+    rendered: string; // Name of the team member
+  };
+  content: {
+    rendered: string; // Biography/description
+  };
+  _embedded: {
+    'wp:featuredmedia'?: {
+      id: number;
+      source_url: string;
+      alt_text: string;
+    }[];
+  };
+  acf: {
+    position?: string;
+    email?: string;
+    phone?: string;
+    linkedin_url?: string;
+    twitter_url?: string;
+    instagram_url?: string;
+    facebook_url?: string;
+  };
+}
+
+// Interface for the Haendler Custom Post Type
+export interface Haendler extends WPEntity {
+  title: RenderedTitle; // Firmenname
+  content: RenderedContent; // Unternehmensbeschreibung
+  featured_media: number; // Logo
+  brands: number[]; // Taxonomy IDs
+  product_categories: number[]; // Taxonomy IDs
+  acf: {
+    ansprechpartner?: string;
+    webseite?: string;
+    phone_number?: string;
+    address?: string;
+  };
+  _embedded?: {
+    author?: Author[];
+    'wp:featuredmedia'?: FeaturedMedia[];
+    'wp:term'?: (Brand[] | ProductCategory[])[];
+  };
+}
+
+export interface RankMathHead {
+  title: string;
+  description: string;
+  robots: string;
+  og_title: string;
+  og_description: string;
+  og_image: { url: string }[];
+}
+
 export interface Tag extends Taxonomy {
   taxonomy: "post_tag";
 }

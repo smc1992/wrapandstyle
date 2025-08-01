@@ -1,4 +1,5 @@
 import { getPageBySlug, getAllPages } from "@/lib/wordpress";
+import { notFound } from "next/navigation";
 import { Section, Container, Prose } from "@/components/craft";
 import { siteConfig } from "@/site.config";
 
@@ -8,7 +9,12 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const pages = await getAllPages();
+  const { data: pages, error } = await getAllPages();
+
+  if (error || !pages) {
+    console.error("Build Error: Failed to fetch pages for generateStaticParams.", error);
+    return [];
+  }
 
   return pages.map((page) => ({
     slug: page.slug,
@@ -18,12 +24,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const page = await getPageBySlug(slug); // page enthält jetzt rank_math_seo?
+  const { slug } = params;
+  const { data: page, error } = await getPageBySlug(slug);
 
-  if (!page) {
+  if (error || !page) {
     return {};
   }
 
@@ -100,10 +106,13 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
-  const page = await getPageBySlug(slug);
+  const { data: page, error } = await getPageBySlug(params.slug);
+
+  if (error || !page) {
+    notFound();
+  }
 
   return (
     <Section>

@@ -29,7 +29,7 @@ import {
 } from '@/components/ui/table';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { useToast } from '@/lib/hooks/use-toast';
-import { deleteTeamMember } from '@/app/lib/actions';
+import { deleteTeamMember, resetPasswordForUser } from '@/app/lib/actions';
 
 // Workaround: Use 'any' type while Supabase CLI issue is resolved
 type TeamMember = any;
@@ -44,7 +44,40 @@ export function TeamTable({ teamMembers }: TeamTableProps) {
   const { toast } = useToast();
 
   // Placeholder for delete functionality
-    const handleDelete = async (id: string) => {
+      const handleResetPassword = async (email: string) => {
+    if (!email) {
+      toast({
+        title: 'Error',
+        description: 'This user does not have an email address.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const confirmation = window.confirm(
+      `Are you sure you want to send a password reset email to ${email}?`
+    );
+    if (!confirmation) {
+      return;
+    }
+
+    const result = await resetPasswordForUser(email);
+
+    if (result?.message.includes('Successfully')) {
+      toast({
+        title: 'Success',
+        description: result.message,
+      });
+    } else {
+      toast({
+        title: 'Error',
+        description: result?.message || 'An unknown error occurred.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleDelete = async (id: string) => {
     const confirmation = window.confirm(
       'Are you sure you want to delete this team member? This action cannot be undone.'
     );
@@ -150,6 +183,9 @@ export function TeamTable({ teamMembers }: TeamTableProps) {
                           </DropdownMenuItem>
                           <DropdownMenuItem onClick={() => handleDelete(member.id)}>
                             Delete
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleResetPassword(member.email)}>
+                            Reset Password
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>

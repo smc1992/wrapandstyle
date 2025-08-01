@@ -1,48 +1,60 @@
-import { createClient } from '@/lib/supabase/server';
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
 
-export const dynamic = 'force-dynamic';
+export async function GET(request: Request) {
+  const { searchParams, origin } = new URL(request.url);
+  const code = searchParams.get('code');
 
-export async function GET(request: NextRequest) {
-  console.log('[AUTH CALLBACK] Handler invoked.');
-  try {
-  console.log('[AUTH CALLBACK] Processing request URL...');
-  const requestUrl = new URL(request.url);
-  const code = requestUrl.searchParams.get('code');
-  const next = requestUrl.searchParams.get('next') ?? '/dashboard';
-
-  console.log('\n--- [AUTH CALLBACK] ---');
-  console.log(`Request URL: ${request.url}`);
-  console.log(`Code found: ${!!code}`);
-
-  console.log(`[AUTH CALLBACK] Code: ${code}, Next: ${next}`);
   if (code) {
-    console.log('[AUTH CALLBACK] Code found. Attempting to get cookie store...');
-    console.log('[AUTH CALLBACK] Creating Supabase server client using shared helper...');
     const supabase = await createClient();
+    const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
-    console.log('[AUTH CALLBACK] Supabase client created. Exchanging code for session...');
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (!exchangeError) {
+      const { data: { user } } = await supabase.auth.getUser();
 
-    if (error) {
-      console.error('[AUTH CALLBACK] Error exchanging code for session:', error.message);
-      // Bei Fehler zur Fehlerseite weiterleiten
-      return NextResponse.redirect(`${requestUrl.origin}/auth/auth-error?message=${encodeURIComponent(error.message)}`);
+      if (user) {
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single();
+
+        if (profileError) {
+          console.error('Error fetching user profile:', profileError.message);
+          return NextResponse.redirect(`${origin}/login?message=Could not retrieve user profile.`);
+        }
+
+        if (profile && profile.role) {
+          let redirectPath = '/'; // Default redirect
+          switch (profile.role) {
+            case 'superadmin':
+              redirectPath = '/dashboard/admin';
+              break;
+            case 'hersteller':
+            case 'folierer':
+            case 'haendler':
+              redirectPath = `/dashboard/${profile.role}`;
+              break;
+            default:
+              // Optional: handle unknown roles
+              redirectPath = '/login?message=Unknown user role.';
+              break;
+          }
+          return NextResponse.redirect(`${origin}${redirectPath}`);
+        } else {
+          // This can happen if the database trigger for profile creation has a slight delay.
+          // We redirect the user to the login page with a helpful message.
+          console.warn(`User profile or role not found, likely due to trigger delay for user: ${user.id}`);
+          return NextResponse.redirect(`${origin}/login?message=Ihr Profil wird eingerichtet. Bitte versuchen Sie, sich in einem Moment einzuloggen.`);
+        }
+      }
     }
 
-    console.log('[AUTH CALLBACK] Session successfully exchanged. Redirecting to dashboard.');
-    // Erfolgreich ausgetauscht, weiterleiten zur 'next'-URL (z.B. /dashboard)
-    return NextResponse.redirect(`${requestUrl.origin}${next}`);
-  } else {
-    console.log('[AUTH CALLBACK] No authorization code found.');
-    // Kein Code gefunden, zur Fehlerseite weiterleiten
-    return NextResponse.redirect(`${requestUrl.origin}/auth/auth-error?message=No authorization code found`);
+    console.error('Error exchanging code for session:', exchangeError?.message);
+    return NextResponse.redirect(`${origin}/login?message=Could not authenticate user.`);
   }
-} catch (e: any) {
-  console.error('[AUTH CALLBACK] CRITICAL ERROR in handler:', e);
-  return NextResponse.json({ error: 'Internal Server Error', details: e.message }, { status: 500 });
+
+  // Redirect to login if no code is present
+  return NextResponse.redirect(`${origin}/login?message=Authentication failed.`);
 }
-} // Closing brace for the GET function
 

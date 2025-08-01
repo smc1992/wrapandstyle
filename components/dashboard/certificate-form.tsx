@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import { useEffect, useRef } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { Label } from '@/components/ui/label';
@@ -26,7 +26,7 @@ const initialState: FormState = {
 };
 
 export default function CertificateForm() {
-  const [state, formAction] = useFormState(addCertificate, initialState);
+    const [state, formAction] = useActionState(addCertificate, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 

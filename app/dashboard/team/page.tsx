@@ -24,7 +24,7 @@ export default async function TeamManagementPage() {
   }
 
   // Format the date on the server to prevent hydration errors
-  const formattedTeamMembers = teamMembers?.map(member => ({
+  const formattedTeamMembers = teamMembers?.map((member: any) => ({
     ...member,
     created_at: new Date(member.created_at).toLocaleDateString('de-DE', {
       day: '2-digit',

@@ -45,9 +45,9 @@ const faqData: Faq[] = [
 
 const FaqItem: FC<FaqItemProps> = ({ faq, isOpen, onClick }) => {
   return (
-    <div className="border-b border-gray-200 py-4">
+    <div className="border-b border-gray-200 dark:border-gray-700 py-4">
       <button
-        className="w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800 focus:outline-none"
+        className="w-full flex justify-between items-center text-left text-lg font-semibold text-gray-800 dark:text-white focus:outline-none"
         onClick={onClick}
       >
         <span>{faq.question}</span>
@@ -56,7 +56,7 @@ const FaqItem: FC<FaqItemProps> = ({ faq, isOpen, onClick }) => {
       <div
         className={`grid overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] mt-4' : 'grid-rows-[0fr]'}`}>
         <div className="overflow-hidden">
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               {faq.answer}
             </p>
         </div>
@@ -73,11 +73,11 @@ const FaqSection: FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 dark:bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Häufig gestellte Fragen</h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Antworten auf die wichtigsten Fragen zu unseren Banner-Werbemöglichkeiten.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Häufig gestellte Fragen</h2>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Antworten auf die wichtigsten Fragen zu unseren Banner-Werbemöglichkeiten.</p>
         </div>
         <div className="max-w-3xl mx-auto">
           {faqData.map((faq, index) => (

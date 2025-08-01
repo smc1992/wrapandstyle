@@ -1,8 +1,9 @@
 // Define the menu items
 export const mainMenu = [
-  { label: "Magazin", href: "/" },
+  { label: "Startseite", href: "/" },
+  { label: "Magazin", href: "/magazin" },
   { label: "Über uns", href: "/ueber-uns" },
-  { label: "Folierer finden", href: "/directory" },
+  { label: "Folierer finden", href: "/folierer" },
   { label: "Werbung", href: "/werbung" },
   { label: "Hersteller", href: "/hersteller" },
   { label: "Händler", href: "/haendler" },

@@ -28,7 +28,12 @@ import { NextJsIcon } from "@/components/icons/nextjs";
 import { getAllCategories } from '@/lib/wordpress';
 
 export default async function Home() {
-  const categories = await getAllCategories();
+  const { data: categories, error: categoriesError } = await getAllCategories();
+
+  if (categoriesError) {
+    console.error("Error fetching categories for filter:", categoriesError);
+    // The page will still render, but the filter might be empty.
+  }
   return (
     <main>
       <HeroSection />
@@ -38,7 +43,7 @@ export default async function Home() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <FeaturedArticles />
         <div className="my-8">
-          <MagazineStickyFilter categories={categories} />
+          <MagazineStickyFilter categories={categories || []} />
         </div>
         <div className="lg:flex lg:gap-8">
           <main className="lg:w-2/3">

@@ -3,7 +3,13 @@ import { getAllPosts } from "@/lib/wordpress";
 import { siteConfig } from "@/site.config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getAllPosts();
+  const { data: posts, error } = await getAllPosts();
+
+  if (error) {
+    console.error("Error fetching posts for sitemap:", error);
+    // Return only static URLs if posts can't be fetched
+    return [];
+  }
 
   const staticUrls: MetadataRoute.Sitemap = [
     {
@@ -44,12 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const postUrls: MetadataRoute.Sitemap = posts.map((post) => ({
+  const postUrls: MetadataRoute.Sitemap = posts?.map((post) => ({
     url: `${siteConfig.site_domain}/magazin/${post.slug}`,
     lastModified: new Date(post.modified),
     changeFrequency: "weekly",
     priority: 0.5,
-  }));
+  })) || [];
 
   return [...staticUrls, ...postUrls];
 }

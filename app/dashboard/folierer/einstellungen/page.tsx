@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 import { FoliererEditForm } from '@/components/dashboard/folierer-edit-form'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { DeleteAccountForm } from '@/components/dashboard/delete-account-form';
+import { deleteFoliererAccount } from '../actions';
 
 export default async function EinstellungenPage() {
   const supabase = await createClient()
@@ -45,7 +47,14 @@ export default async function EinstellungenPage() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md w-full">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Einstellungen</h1>
+        <Link href="/dashboard/folierer/portfolio">
+          <Button>Portfolio verwalten</Button>
+        </Link>
+      </div>
+      <div className="bg-white p-8 rounded-lg shadow-md w-full">
         <h1 className="text-3xl font-semibold text-gray-800 mb-6">Profil bearbeiten</h1>
         <p className="text-gray-600 mb-8">
           Hier können Sie Ihre Profildaten aktualisieren.
@@ -56,6 +65,10 @@ export default async function EinstellungenPage() {
             <Button variant="outline">Zurück zur Übersicht</Button>
           </Link>
         </div>
+      </div>
+      <div className="mt-8">
+        <DeleteAccountForm deleteAction={deleteFoliererAccount} />
+      </div>
     </div>
   );
 }

@@ -22,7 +22,12 @@ import { Post } from "@/lib/wordpress.d";
 import * as cheerio from 'cheerio';
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const { data: posts, error } = await getAllPosts();
+
+  if (error || !posts) {
+    console.error("Error fetching posts for static params generation:", error);
+    return [];
+  }
 
   return posts.map((post: Post) => ({
     slug: post.slug,
@@ -32,13 +37,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const { data: post, error } = await getPostBySlug(params.slug);
 
-  if (!post) {
-    return {};
+  if (error || !post) {
+    return {
+      title: "Fehler",
+      description: "Der Beitrag konnte nicht gefunden werden.",
+    };
   }
 
   const seo = post.rank_math_seo;
@@ -57,17 +64,16 @@ export async function generateMetadata({
   
   const twitterImageUrl = seo?.twitter_image || ogImageUrl;
 
-  // Define allowed types using 'as const' for stricter type inference
   const validOgTypes = ['article', 'website', 'book', 'profile', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'video.movie', 'video.episode', 'video.tv_show', 'video.other'] as const;
-  type OgType = typeof validOgTypes[number]; // Creates a union of the string literals
-  let ogType: OgType = 'article'; // Default
+  type OgType = typeof validOgTypes[number];
+  let ogType: OgType = 'article';
   if (seo?.og_type && (validOgTypes as readonly string[]).includes(seo.og_type)) {
     ogType = seo.og_type as OgType;
   }
 
   const validTwitterCardTypes = ['summary_large_image', 'summary', 'player', 'app'] as const;
-  type TwitterCardType = typeof validTwitterCardTypes[number]; // Creates a union of the string literals
-  let twitterCard: TwitterCardType = 'summary_large_image'; // Default
+  type TwitterCardType = typeof validTwitterCardTypes[number];
+  let twitterCard: TwitterCardType = 'summary_large_image';
   if (seo?.twitter_card_type && (validTwitterCardTypes as readonly string[]).includes(seo.twitter_card_type)) {
     twitterCard = seo.twitter_card_type as TwitterCardType;
   }
@@ -83,14 +89,7 @@ export async function generateMetadata({
       description: seo?.og_description || pageDescription,
       type: ogType,
       url: seo?.og_url || canonicalUrl,
-      images: ogImageUrl ? [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: seo?.og_title || pageTitle,
-        },
-      ] : [],
+      images: ogImageUrl ? [{ url: ogImageUrl, width: 1200, height: 630, alt: seo?.og_title || pageTitle }] : [],
     },
     twitter: {
       card: twitterCard,
@@ -101,24 +100,52 @@ export async function generateMetadata({
   };
 }
 
+import { notFound } from 'next/navigation';
+
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-  const featuredMedia = post.featured_media
-    ? await getFeaturedMediaById(post.featured_media)
-    : null;
-  const author = await getAuthorById(post.author);
-  const date = new Date(post.date).toLocaleDateString("en-US", {
+  const { data: post, error: postError } = await getPostBySlug(params.slug);
+
+  if (postError || !post) {
+    notFound();
+  }
+
+  const [
+    { data: featuredMedia, error: mediaError },
+    { data: author, error: authorError },
+    { data: category, error: categoryError },
+  ] = await Promise.all([
+    post.featured_media ? getFeaturedMediaById(post.featured_media) : Promise.resolve({ data: null, error: null }),
+    getAuthorById(post.author),
+    post.categories.length > 0 ? getCategoryById(post.categories[0]) : Promise.resolve({ data: null, error: null }),
+  ]);
+
+  // Post author and category are critical for rendering the page.
+  if (authorError || !author || categoryError || !category) {
+    console.error("Error fetching critical post details", { authorError, categoryError });
+    notFound();
+  }
+
+  // Media error is not critical, we can render without a hero image.
+  if (mediaError) {
+    console.error("Error fetching featured media", { mediaError });
+  }
+
+  const { data: relatedPosts, error: relatedPostsError } = await getRelatedPosts(category.id, post.id);
+
+  if (relatedPostsError) {
+      console.error("Error fetching related posts", relatedPostsError);
+      // Non-critical, we can still render the page without related posts
+  }
+
+  const date = new Date(post.date).toLocaleDateString("de-DE", {
     month: "long",
     day: "numeric",
     year: "numeric",
   });
-  const category = await getCategoryById(post.categories[0]);
-  const relatedPosts = await getRelatedPosts(category.id, post.id);
 
   // Generate Table of Contents and update content with IDs
   const toc: { text: string; slug: string }[] = [];
@@ -228,8 +255,8 @@ export default async function Page({
                 <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-800">
                   <h3 className="font-bold mb-4">Verwandte Artikel</h3>
                   <div className="space-y-4">
-                    {relatedPosts.length > 0 ? (
-                      relatedPosts.map((relatedPost) => {
+                    {relatedPosts && relatedPosts.length > 0 ? (
+                      relatedPosts.map((relatedPost: Post) => {
                         const relatedPostMedia = relatedPost._embedded?.['wp:featuredmedia']?.[0];
                         return (
                           <Link key={relatedPost.id} href={`/magazin/${relatedPost.slug}`} className="flex items-center gap-4 group">

@@ -1,40 +1,29 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import type { Author, Category, Tag } from "@/lib/wordpress";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"; // Ensure this is the correct import path
-import { Button } from "@/components/ui/button"; // Add this import for the Button component
-
-interface Author {
-  id: number;
-  name: string;
-}
-
-interface Tag {
-  id: number;
-  name: string;
-}
-
-interface Category {
-  id: number;
-  name: string;
-}
+} from "@/components/ui/select";
 
 interface FilterPostsProps {
-  authors: Author[];
   tags: Tag[];
   categories: Category[];
-  selectedAuthor?: string;
+  authors: Author[];
   selectedTag?: string;
+  selectedAuthor?: string;
   selectedCategory?: string;
 }
 
-export function FilterPosts({
+export function MagazineStickyFilter({
   authors,
   tags,
   categories,
@@ -43,6 +32,9 @@ export function FilterPosts({
   selectedCategory,
 }: FilterPostsProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "");
 
   const handleFilterChange = (type: string, value: string) => {
     console.log(`Filter changed: ${type} -> ${value}`);
@@ -53,8 +45,14 @@ export function FilterPosts({
     router.push(`/magazin?${newParams.toString()}`);
   };
 
-  const handleResetFilters = () => {
-    router.push("/magazin");
+  const handleReset = () => {
+    setSearchTerm("");
+    router.push(pathname);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleFilterChange("search", searchTerm);
   };
 
   const hasTags = tags.length > 0;
@@ -62,69 +60,79 @@ export function FilterPosts({
   const hasAuthors = authors.length > 0;
 
   return (
-    <div className="grid md:grid-cols-[1fr_1fr_1fr_0.5fr] gap-2 my-4 !z-10">
-      <Select
-        value={selectedTag || "all"}
-        onValueChange={(value) => handleFilterChange("tag", value)}
-      >
-        <SelectTrigger disabled={!hasTags}>
-          {hasTags ? <SelectValue placeholder="Alle Schlagwörter" /> : "Keine Schlagwörter gefunden"}
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">Alle Schlagwörter</SelectItem>
-          {tags.map((tag) => (
-            <SelectItem key={tag.id} value={tag.id.toString()}>
-              {tag.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+    <div className="sticky top-0 z-10 bg-white/80 dark:bg-background/80 backdrop-blur-md border-b mb-8 py-4">
+      <form onSubmit={handleSearchSubmit} className="container mx-auto flex flex-wrap items-center justify-center gap-4">
+        <Select
+          value={selectedTag || "all"}
+          onValueChange={(value) => handleFilterChange("tag", value)}
+        >
+          <SelectTrigger disabled={!hasTags}>
+            {hasTags ? <SelectValue placeholder="Alle Schlagwörter" /> : "Keine Schlagwörter gefunden"}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Alle Schlagwörter</SelectItem>
+            {tags.map((tag) => (
+              <SelectItem key={tag.id} value={tag.id.toString()}>
+                {tag.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <Select
-        value={selectedCategory || "all"}
-        onValueChange={(value) => handleFilterChange("category", value)}
-      >
-        <SelectTrigger disabled={!hasCategories}>
-          {hasCategories ? (
-            <SelectValue placeholder="Alle Kategorien" />
-          ) : (
-            "Keine Kategorien gefunden"
-          )}
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">Alle Kategorien</SelectItem>
-          {categories.map((category) => (
-            <SelectItem key={category.id} value={category.id.toString()}>
-              {category.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        <Select
+          value={selectedCategory || "all"}
+          onValueChange={(value) => handleFilterChange("category", value)}
+        >
+          <SelectTrigger disabled={!hasCategories}>
+            {hasCategories ? (
+              <SelectValue placeholder="Alle Kategorien" />
+            ) : (
+              "Keine Kategorien gefunden"
+            )}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Alle Kategorien</SelectItem>
+            {categories.map((category) => (
+              <SelectItem key={category.id} value={category.id.toString()}>
+                {category.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <Select
-        value={selectedAuthor || "all"}
-        onValueChange={(value) => handleFilterChange("author", value)}
-      >
-        <SelectTrigger disabled={!hasAuthors} className="text-center">
-          {hasAuthors ? (
-            <SelectValue placeholder="Alle Autoren" />
-          ) : (
-            "Keine Autoren gefunden"
-          )}
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">Alle Autoren</SelectItem>
-          {authors.map((author) => (
-            <SelectItem key={author.id} value={author.id.toString()}>
-              {author.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        <Select
+          value={selectedAuthor || "all"}
+          onValueChange={(value) => handleFilterChange("author", value)}
+        >
+          <SelectTrigger disabled={!hasAuthors} className="text-center">
+            {hasAuthors ? (
+              <SelectValue placeholder="Alle Autoren" />
+            ) : (
+              "Keine Autoren gefunden"
+            )}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Alle Autoren</SelectItem>
+            {authors.map((author) => (
+              <SelectItem key={author.id} value={author.id.toString()}>
+                {author.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <Button variant="outline" onClick={handleResetFilters}>
-        Filter zurücksetzen
-      </Button>
+        <Input
+          type="search"
+          placeholder="Artikel suchen..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="max-w-xs"
+        />
+        <Button type="submit">Suchen</Button>
+        <Button variant="outline" onClick={handleReset} className="whitespace-nowrap">
+          Filter zurücksetzen
+        </Button>
+      </form>
     </div>
   );
 }

@@ -10,11 +10,11 @@ export function CtaSection() {
           Egal ob Sie einen zuverlässigen Folierer suchen oder als Betrieb neue Kunden gewinnen möchten – hier sind Sie richtig.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto">
-            Partner werden
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto">
+            <Link href="/register">Partner werden</Link>
           </Button>
-          <Button size="lg" variant="ghost" className="border border-white bg-transparent text-white hover:bg-white hover:text-secondary w-full sm:w-auto">
-            Projekt starten
+          <Button asChild size="lg" variant="ghost" className="border border-white bg-transparent text-white hover:bg-white hover:text-secondary w-full sm:w-auto">
+            <Link href="/folierer">Projekt starten</Link>
           </Button>
         </div>
       </div>

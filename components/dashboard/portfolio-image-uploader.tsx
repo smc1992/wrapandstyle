@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { addPortfolioImage } from '@/app/dashboard/folierer/portfolio/actions';
 
 export default function PortfolioImageUploader() {
   const [status, setStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; message: string }>({ type: 'idle', message: '' });
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,7 +24,7 @@ export default function PortfolioImageUploader() {
         setStatus({ type: 'success', message: 'Bild erfolgreich hochgeladen!' });
         formRef.current?.reset();
         // Reload the page to show the new image
-        window.location.reload();
+        router.refresh();
       }
     } catch (err) {
       setStatus({ type: 'error', message: 'Ein unerwarteter Fehler ist aufgetreten.' });

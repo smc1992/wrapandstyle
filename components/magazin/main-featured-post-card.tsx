@@ -1,17 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "@/lib/wordpress.d";
-import {
-  getFeaturedMediaById,
-  getAuthorById,
-  getCategoryById,
-} from "@/lib/wordpress";
+import { getFeaturedMediaById, getAuthorById } from "@/lib/wordpress";
+import type { Category } from "@/lib/wordpress";
 
-export async function MainFeaturedPostCard({ post }: { post: Post }) {
+export async function MainFeaturedPostCard({ post, categories }: { post: Post, categories: Category[] }) {
   const [media, author, category] = await Promise.all([
     post.featured_media ? getFeaturedMediaById(post.featured_media) : null,
     post.author ? getAuthorById(post.author) : null,
-    post.categories?.[0] ? getCategoryById(post.categories[0]) : null,
+    post.categories?.[0] ? categories.find(cat => cat.id === post.categories?.[0]) : null,
   ]);
 
   const date = new Date(post.date).toLocaleDateString("de-DE", {
@@ -24,18 +21,18 @@ export async function MainFeaturedPostCard({ post }: { post: Post }) {
   const readingTime = Math.ceil(words / 200);
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md article-card group h-full flex flex-col">
+    <div className="bg-white dark:bg-background rounded-xl overflow-hidden shadow-md article-card group h-full flex flex-col">
       <Link href={`/magazin/${post.slug}`} className="relative h-80 overflow-hidden block">
-        {media?.source_url ? (
+        {media?.data?.source_url ? (
           <Image
-            src={media.source_url}
+            src={media.data.source_url}
             alt={post.title?.rendered || "Featured article"}
             fill
             className="w-full h-full object-cover article-image transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <p className="text-gray-500">Kein Bild verfügbar</p>
+          <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+            <p className="text-gray-500 dark:text-gray-400">Kein Bild verfügbar</p>
           </div>
         )}
         {category && (
@@ -47,7 +44,7 @@ export async function MainFeaturedPostCard({ post }: { post: Post }) {
         )}
       </Link>
       <div className="p-6 flex flex-col flex-grow">
-        <div className="flex items-center text-sm text-gray-500 mb-3">
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
           <span>{date}</span>
           <span className="mx-2">•</span>
           <span>{readingTime} Min Lesezeit</span>
@@ -59,23 +56,23 @@ export async function MainFeaturedPostCard({ post }: { post: Post }) {
           />
         </Link>
         <div
-          className="text-gray-600 mb-4 flex-grow prose prose-sm max-w-none"
+          className="text-gray-600 dark:text-gray-300 mb-4 flex-grow prose prose-sm max-w-none dark:prose-invert"
           dangerouslySetInnerHTML={{
             __html: post.excerpt?.rendered || "",
           }}
         />
         <div className="flex items-center justify-between mt-auto pt-4 border-t">
           <div className="flex items-center gap-3">
-            {author?.avatar_urls?.["96"] && (
+            {author?.data?.avatar_urls?.["96"] && (
               <Image
-                src={author.avatar_urls["96"]}
-                alt={author.name || "Autor"}
+                src={author.data.avatar_urls["96"]}
+                alt={author.data.name || "Autor"}
                 width={40}
                 height={40}
                 className="w-10 h-10 rounded-full object-cover"
               />
             )}
-            <span className="font-medium text-sm">{author?.name || "Unbekannter Autor"}</span>
+            <span className="font-medium text-sm">{author?.data?.name || "Unbekannter Autor"}</span>
           </div>
           <Link
             href={`/magazin/${post.slug}`}

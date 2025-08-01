@@ -13,7 +13,21 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const pages = await getAllPages();
+  const { data: pages, error } = await getAllPages();
+
+  if (error || !pages) {
+    return (
+      <Section>
+        <Container>
+          <Prose>
+            <h2>Error loading pages</h2>
+            <p>Could not retrieve the list of pages. Please try again later.</p>
+            {error && <p className="text-red-500">Details: {error}</p>}
+          </Prose>
+        </Container>
+      </Section>
+    );
+  }
 
   return (
     <Section>

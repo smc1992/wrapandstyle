@@ -9,7 +9,8 @@ export async function verifyPassword(formData: FormData) {
   const sitePassword = process.env.SITE_PASSWORD;
 
   if (password === sitePassword && sitePassword) {
-    cookies().set('site-access-granted', 'true', {
+    const cookieStore = cookies();
+    cookieStore.set('site-access-granted', 'true', {
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 1 week
       httpOnly: true,

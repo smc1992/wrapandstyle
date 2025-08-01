@@ -1,90 +1,50 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
 
-// Helper to create a Supabase client that can be used in Server-side Components, API routes, and middleware.
-const createSupabaseMiddlewareClient = (request: NextRequest, response: NextResponse) => {
-  return createServerClient(
+export async function middleware(request: NextRequest) {
+  let response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  })
+
+  const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         get(name: string) {
-          return request.cookies.get(name)?.value;
+          return request.cookies.get(name)?.value
         },
         set(name: string, value: string, options: CookieOptions) {
-          response.cookies.set({ name, value, ...options });
+          request.cookies.set({ name, value, ...options })
+          response.cookies.set({ name, value, ...options })
         },
         remove(name: string, options: CookieOptions) {
-          response.cookies.set({ name, value: '', ...options });
+          request.cookies.delete(name)
+          response.cookies.delete(name)
         },
       },
     }
-  );
-};
+  )
 
-export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  // This will refresh the session cookie if it's expired.
+  const { data: { user } } = await supabase.auth.getUser()
 
-  // Allow access to the site login page itself and API routes
-  if (pathname.startsWith('/site-login') || pathname.startsWith('/api')) {
-    return NextResponse.next();
-  }
-
-  // Check for the site access cookie
-  const hasAccess = request.cookies.get('site-access-granted')?.value === 'true';
-  const sitePassword = process.env.SITE_PASSWORD;
-
-  // If a site password is set and the user doesn't have access, redirect to login
-  if (sitePassword && !hasAccess) {
-    const url = new URL('/site-login', request.url);
-    url.searchParams.set('next', pathname + request.nextUrl.search);
-    return NextResponse.redirect(url);
-  }
-
-  const response = NextResponse.next({
-    request: { headers: request.headers },
-  });
-
-  const supabase = createSupabaseMiddlewareClient(request, response);
-  const { data: { user } } = await supabase.auth.getUser();
-
-  // Define admin-only paths that require a 'superadmin' role
-  const adminPaths = ['/dashboard/admin', '/dashboard/team'];
-
-  // Rule 1: Protect all dashboard routes if user is not logged in
-  if (!user && pathname.startsWith('/dashboard')) {
-    const url = new URL('/login', request.url);
-    url.searchParams.set('next', pathname);
-    return NextResponse.redirect(url);
-  }
-
-  // Rule 2: Handle routes for logged-in users
-  if (user) {
-    // Redirect logged-in users away from the login/register page
-    if (pathname === '/login' || pathname === '/register') {
-      const url = new URL('/dashboard', request.url);
-      return NextResponse.redirect(url);
+  // Custom logic for protecting admin routes
+  if (request.nextUrl.pathname.startsWith('/dashboard/admin') || request.nextUrl.pathname.startsWith('/dashboard/team')) {
+    if (!user) {
+      return NextResponse.redirect(new URL('/login', request.url))
     }
 
-    // Rule 3: Protect admin paths
-    if (adminPaths.some(path => pathname.startsWith(path))) {
-      // Fetch user's role from the profiles table
-      const { data: profile, error } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single();
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single()
 
-      // If role is not 'superadmin', redirect them away
-      if (error || profile?.role !== 'superadmin') {
-        console.log(`Middleware: Access DENIED for user ${user.id} to ${pathname}. Role: ${profile?.role}. Redirecting.`);
-        const url = new URL('/dashboard', request.url);
-        // Optionally add an error message to the query params to display on the dashboard
-        url.searchParams.set('error', 'unauthorized_access');
-        return NextResponse.redirect(url);
-      }
-
-      console.log(`Middleware: Access GRANTED for superadmin ${user.id} to ${pathname}.`);
+    if (profile?.role !== 'superadmin') {
+      return NextResponse.redirect(new URL('/dashboard', request.url))
     }
   }
 

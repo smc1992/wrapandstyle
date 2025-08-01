@@ -1,8 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
+
 import { FoliererProfile, DetailedService, Testimonial, Certificate } from '@/lib/types';
 
 export const revalidate = 0; // Disable caching for this page
@@ -11,7 +10,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { RiGlobalLine, RiPhoneLine, RiMapPinLine, RiUserLine, RiDoubleQuotesL, RiAwardLine, RiCheckboxCircleLine, RiFocus3Line, RiEyeLine, RiMailLine } from 'react-icons/ri';
-import PortfolioGallery from '@/components/ui/portfolio-gallery';
+import { PublicPortfolioGallery } from '@/components/public-portfolio-gallery';
 import InteractiveMap from '@/components/ui/interactive-map';
 import { VideoPlayer } from '@/components/ui/video-player';
 
@@ -22,22 +21,22 @@ export default async function FoliererPublicProfilePage({ params }: { params: { 
   const { data: { user } } = await supabase.auth.getUser();
 
   // Fetch the profile data using the slug from the URL
-  const { data, error: profileError } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from('folierer')
     .select('*, mission_statement, vision_statement, company_history')
     .eq('slug', params.slug)
     .single();
 
   // If no profile is found or there's an error, show a 404 page
-  if (profileError || !data) {
+  if (profileError || !profile) {
     notFound();
   }
-  const foliererProfile = data as FoliererProfile;
+  const foliererProfile = profile as FoliererProfile;
 
   // Fetch portfolio images for this user
   const { data: portfolioImages, error: imagesError } = await supabase
     .from('portfolio_images')
-    .select('id, image_url')
+    .select('id, image_url, title')
     .eq('user_id', foliererProfile.user_id)
     .order('created_at', { ascending: false });
 
@@ -71,7 +70,6 @@ export default async function FoliererPublicProfilePage({ params }: { params: { 
 
   return (
     <>
-      <Header user={user} />
       <main className="bg-gray-50 dark:bg-gray-900">
       {/* Visual Header */}
       <div className="relative bg-gray-800 h-48 md:h-64 flex items-center justify-center pt-14">
@@ -184,7 +182,7 @@ export default async function FoliererPublicProfilePage({ params }: { params: { 
                 <CardTitle>Portfolio</CardTitle>
               </CardHeader>
               <CardContent>
-                <PortfolioGallery images={portfolioImages || []} />
+                <PublicPortfolioGallery images={portfolioImages || []} />
               </CardContent>
             </Card>
 
@@ -306,7 +304,7 @@ export default async function FoliererPublicProfilePage({ params }: { params: { 
         </div>
       </div>
       </main>
-      <Footer />
+      
     </>
   );
 }

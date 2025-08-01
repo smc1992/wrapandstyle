@@ -4,13 +4,10 @@ import Link from "next/link";
 import { Post } from "@/lib/wordpress.d";
 import { cn } from "@/lib/utils";
 
-import {
-  getFeaturedMediaById,
-  getAuthorById,
-  getCategoryById,
-} from "@/lib/wordpress";
+import { getFeaturedMediaById, getAuthorById } from "@/lib/wordpress";
+import type { Category } from "@/lib/wordpress";
 
-export async function PostCard({ post }: { post: Post }) {
+export async function PostCard({ post, categories }: { post: Post, categories: Category[] }) {
   const media = post.featured_media
     ? await getFeaturedMediaById(post.featured_media)
     : null;
@@ -20,8 +17,8 @@ export async function PostCard({ post }: { post: Post }) {
     day: "numeric",
     year: "numeric",
   });
-  const category = post.categories?.[0]
-    ? await getCategoryById(post.categories[0])
+  const category = post.categories?.[0] 
+    ? categories.find(c => c.id === post.categories?.[0]) 
     : null;
 
   return (
@@ -29,15 +26,15 @@ export async function PostCard({ post }: { post: Post }) {
       href={`/magazin/${post.slug}`}
       className={cn(
         "border p-4 bg-accent/30 rounded-lg group flex justify-between flex-col not-prose gap-8",
-        "hover:bg-accent/75 transition-all"
+        "hover:bg-accent/75 transition-all dark:bg-background dark:text-foreground"
       )}
     >
       <div className="flex flex-col gap-4">
         <div className="h-48 w-full overflow-hidden relative rounded-md border flex items-center justify-center bg-muted">
-          {media?.source_url ? (
+          {media?.data?.source_url ? (
             <Image
               className="h-full w-full object-cover"
-              src={media.source_url}
+              src={media.data.source_url}
               alt={post.title?.rendered || "Post thumbnail"}
               width={400}
               height={200}
@@ -68,7 +65,7 @@ export async function PostCard({ post }: { post: Post }) {
       <div className="flex flex-col gap-4">
         <hr />
         <div className="flex justify-between items-center text-xs">
-          <p>{category?.name || "Uncategorized"}</p>
+          <p>{category?.name || "Unkategorisiert"}</p>
           <p>{date}</p>
         </div>
       </div>

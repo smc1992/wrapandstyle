@@ -31,12 +31,12 @@ const serviceFeatures = [
 
 const AdvertisingBenefitsAndService = () => {
     return (
-        <section className="py-16">
+        <section className="py-16 dark:bg-background">
             <div className="container mx-auto px-4">
                 <div className="grid lg:grid-cols-3 gap-12 items-start">
                     {/* Left Side: Benefits */}
                     <div className="lg:col-span-2">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Ihre Vorteile auf einen Blick</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">Ihre Vorteile auf einen Blick</h2>
                         <div className="grid md:grid-cols-2 gap-8">
                             {benefits.map(item => (
                                 <div key={item.title}>
@@ -44,22 +44,22 @@ const AdvertisingBenefitsAndService = () => {
                                         <div className="bg-primary/10 p-3 rounded-full mr-4">
                                             <i className={`${item.icon} text-primary text-2xl`}></i>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
+                                        <h3 className="text-xl font-bold text-gray-800 dark:text-white">{item.title}</h3>
                                     </div>
-                                    <p className="text-gray-600 pl-16">{item.description}</p>
+                                    <p className="text-gray-600 dark:text-gray-300 pl-16">{item.description}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Right Side: Service Card */}
-                    <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 mt-10 lg:mt-0">
-                        <h3 className="text-xl font-bold mb-4 text-gray-800">Unser Service für Sie</h3>
+                    <div className="bg-white dark:bg-background rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 mt-10 lg:mt-0">
+                        <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">Unser Service für Sie</h3>
                         <ul className="space-y-3 mb-6">
                             {serviceFeatures.map(feature => (
                                 <li key={feature.text} className="flex items-center">
                                     <i className={`${feature.icon} text-primary text-xl`}></i>
-                                    <span className="ml-3 text-gray-700">{feature.text}</span>
+                                    <span className="ml-3 text-gray-700 dark:text-gray-300">{feature.text}</span>
                                 </li>
                             ))}
                         </ul>
