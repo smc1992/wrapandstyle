@@ -8,6 +8,7 @@ import MagazineHeroNew from '@/components/sections/magazine-hero-new';
 import { FeaturedArticles } from '@/components/sections/featured-articles';
 import { MagazineSidebar } from '@/components/sections/magazine-sidebar';
 import { MagazineStickyFilter } from '@/components/sections/magazine-sticky-filter';
+import { Suspense } from 'react';
 
 import { DirectorySection } from '@/components/sections/directory-section';
 import { BenefitsSection } from '@/components/sections/benefits-section';
@@ -43,7 +44,9 @@ export default async function Home() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <FeaturedArticles />
         <div className="my-8">
-          <MagazineStickyFilter categories={categories || []} />
+          <Suspense fallback={<div className="h-16 border-b border-border/40 bg-gray-100 dark:bg-gray-800 animate-pulse rounded">Lade Filter...</div>}>
+            <MagazineStickyFilter categories={categories || []} />
+          </Suspense>
         </div>
         <div className="lg:flex lg:gap-8">
           <main className="lg:w-2/3">
