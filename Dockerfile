@@ -1,44 +1,26 @@
 FROM node:18-alpine AS base
 
-# Install dependencies only when needed
-FROM base AS deps
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY next-wp/package.json next-wp/package-lock.json ./
+# Kopiere das gesamte Repository
+COPY . .
 
-# Install dependencies
+# Wechsle in das next-wp-Verzeichnis für alle weiteren Operationen
+WORKDIR /app/next-wp
+
+# Installiere Abhängigkeiten
 RUN npm ci
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY next-wp .
-
-# Build the Next.js application
+# Baue die Next.js-Anwendung
 RUN npm run build
 
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
+# Setze Umgebungsvariablen für die Produktion
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
-ENV NODE_ENV production
-
-# Create a non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copy built application
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
+# Exponiere Port 3000
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-
-CMD ["node", "server.js"]
+# Starte die Anwendung
+CMD ["npm", "start"]
