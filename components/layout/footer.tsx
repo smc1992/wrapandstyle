@@ -32,8 +32,8 @@ const Footer = () => {
               <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Startseite</Link></li>
               <li><Link href="/ueber-uns" className="text-gray-400 hover:text-white transition-colors">Über uns</Link></li>
               <li><Link href="/magazin" className="text-gray-400 hover:text-white transition-colors">Magazin</Link></li>
-              <li><Link href="/folierer-finden" className="text-gray-400 hover:text-white transition-colors">Folierer finden</Link></li>
-              <li><Link href="/eintragen" className="text-gray-400 hover:text-white transition-colors">Als Folierer eintragen</Link></li>
+              <li><Link href="/folierer" className="text-gray-400 hover:text-white transition-colors">Folierer finden</Link></li>
+              <li><Link href="/login?action=signup" className="text-gray-400 hover:text-white transition-colors">Als Folierer eintragen</Link></li>
             </ul>
           </div>
 
