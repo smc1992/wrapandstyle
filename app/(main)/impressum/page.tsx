@@ -1,7 +1,7 @@
 export default function ImpressumPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="prose max-w-4xl mx-auto">
+    <div className="container mx-auto px-4 py-12 dark:bg-background">
+      <div className="prose dark:prose-invert max-w-4xl mx-auto">
         <h1>Impressum</h1>
         <h2>Angaben gemäß § 5 TMG</h2>
         <p>

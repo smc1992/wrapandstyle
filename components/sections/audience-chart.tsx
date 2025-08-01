@@ -9,19 +9,20 @@ const AudienceChart = () => {
 
   useEffect(() => {
     if (chartRef.current) {
+      const isDarkMode = document.documentElement.classList.contains('dark');
       const chart = echarts.init(chartRef.current);
       const option = {
         tooltip: {
           trigger: 'item',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-          textStyle: { color: '#1f2937' },
+          backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+          textStyle: { color: isDarkMode ? '#e5e7eb' : '#1f2937' },
           borderWidth: 1,
-          borderColor: '#e5e7eb'
+          borderColor: isDarkMode ? '#475569' : '#e5e7eb'
         },
         legend: {
           top: '0%',
           left: 'center',
-          textStyle: { color: '#374151' }
+          textStyle: { color: isDarkMode ? '#e5e7eb' : '#374151' }
         },
         series: [
           {
@@ -31,7 +32,7 @@ const AudienceChart = () => {
             avoidLabelOverlap: false,
             itemStyle: {
               borderRadius: 10,
-              borderColor: '#fff',
+              borderColor: isDarkMode ? '#1e293b' : '#fff',
               borderWidth: 2
             },
             label: { show: false, position: 'center' },
@@ -60,7 +61,14 @@ const AudienceChart = () => {
     }
   }, []);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '400px' }} />;
+  return (
+    <section className="py-16 dark:bg-background">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Unsere Zielgruppe</h2>
+        <div ref={chartRef} style={{ width: '100%', height: '400px' }} />
+      </div>
+    </section>
+  );
 };
 
 export default AudienceChart;

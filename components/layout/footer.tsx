@@ -44,7 +44,6 @@ const Footer = () => {
               <li><Link href="/impressum" className="text-gray-400 hover:text-white transition-colors">Impressum</Link></li>
               <li><Link href="/datenschutz" className="text-gray-400 hover:text-white transition-colors">Datenschutz</Link></li>
               <li><Link href="/agb" className="text-gray-400 hover:text-white transition-colors">AGB</Link></li>
-              <li><button className="text-gray-400 hover:text-white transition-colors text-left">Cookie-Einstellungen</button></li>
             </ul>
           </div>
 
