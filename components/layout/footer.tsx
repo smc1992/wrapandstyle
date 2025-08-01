@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Column 1: Logo and About */}
           <div>
-            <Image src="/images/Logo-wrapandstyle weiß-blau.webp" alt="Wrap&Style Logo" width={180} height={48} className="mb-4" />
+            <Image src="/images/logo-wrapandstyle-weiss-blau.webp" alt="Wrap&Style Logo" width={180} height={48} className="mb-4" />
             <p className="text-gray-400 mb-6 text-sm">
               Das führende Portal und Magazin für Fahrzeugfolierung in Deutschland. Seit über 10 Jahren Ihr verlässlicher Partner in der Folierungsbranche.
             </p>
