@@ -9,7 +9,7 @@ const FormSchema = z.object({
   role: z.string().min(2, { message: 'Rolle muss mindestens 2 Zeichen lang sein.' }),
   email: z.string().email({ message: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.' }).optional().or(z.literal('')),
   phone: z.string().optional(),
-  image: z.instanceof(File).optional()
+  image: z.any().optional() // Edge Runtime-kompatible Version ohne File-API
 });
 
 export async function createTeamMember(prevState: any, formData: FormData) {
